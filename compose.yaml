@@ -11,8 +11,6 @@ services:
     environment:  
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     tty: true
-    networks:
-      - net
 
   vector-server:
     image: qdrant/qdrant
@@ -25,8 +23,6 @@ services:
       QDRANT__TELEMETRY_DISABLED: 'true'
     ports:
       - 6333:6333
-    networks:
-      - net
 
   sql-server:
     image: postgres
@@ -38,10 +34,3 @@ services:
       POSTGRES_PASSWORD: "postgres"
     volumes:
       - ./postgres/pgdata:/var/lib/postgresql/data
-    networks:
-      - net
-      
-
-networks:
-  net:
-    driver: bridge
