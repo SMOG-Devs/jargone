@@ -5,7 +5,14 @@
 
   const fetchBookmarks = () => {
     return new Promise((resolve) => {
+      if (!currentVideo) {
+        console.warn("fetchBookmarks: currentVideo is undefined or empty");
+        resolve([]);
+        return;
+      }
+  
       chrome.storage.sync.get([currentVideo], (obj) => {
+        console.log("fetchBookmarks: Storage data for", currentVideo, obj);
         resolve(obj[currentVideo] ? JSON.parse(obj[currentVideo]) : []);
       });
     });
@@ -49,7 +56,7 @@
   chrome.runtime.onMessage.addListener((obj, sender, response) => {
     const { type, value, videoId } = obj;
 
-    if (type === "NEW") {
+    if (type === "NEW" || type === "DUPA") {
       currentVideo = videoId;
       newVideoLoaded();
     } else if (type === "PLAY") {
@@ -58,9 +65,6 @@
       currentVideoBookmarks = currentVideoBookmarks.filter((b) => b.time != value);
       chrome.storage.sync.set({ [currentVideo]: JSON.stringify(currentVideoBookmarks) });
       response(currentVideoBookmarks);
-    } else if (type === "CONTEXT_ADD_BOOKMARK") {
-      currentVideo = videoId;
-      newVideoLoaded();
     }
   });
 

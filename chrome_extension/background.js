@@ -25,13 +25,13 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "add-youtube-bookmark" 
     && tab.url 
-    // && tab.url.includes("youtube.com/watch")
+    && tab.url.includes("youtube.com/watch")
   ) {
     const queryParameters = tab.url.split("?")[1];
     const urlParameters = new URLSearchParams(queryParameters);
     
     chrome.tabs.sendMessage(tab.id, {
-      type: "CONTEXT_ADD_BOOKMARK",
+      type: "DUPA",
       videoId: urlParameters.get("v"),
     });
   }
