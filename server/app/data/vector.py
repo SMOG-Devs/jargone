@@ -3,6 +3,7 @@ Schema for the vector database.
 
 Qdrant is used as the vector database.
 """
+import os
 from typing import Dict, List, Optional, Any
 from pydantic import BaseModel, Field
 from qdrant_client import QdrantClient
@@ -39,7 +40,7 @@ class QdrantVectorDB:
         collection_name: str = "documents",
         host: str = "localhost",
         port: int = 6333,
-        embedding_dim: int = 1536  # Default dimension for OpenAI embeddings
+        embedding_dim: int = int(os.getenv("EMBEDDING_DIMENSION"))
     ):
         """
         Initialize the Qdrant vector database.
