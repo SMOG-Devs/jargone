@@ -1,0 +1,1320 @@
+Entity,Decription
+access point,A device that allows wireless-equipped computers and other devices to communicate with a wired network.
+accessibility,"As specified in Section 508 of the 1998 Rehabilitation Act, the
+ process of designing and developing Web sites and other technology that
+ can be navigated and understood by all people, including those with 
+visual, hearing, motor, or cognitive impairments. This type of design 
+also can benefit people with older/slower software and hardware."
+activex,"A technology from Microsoft that links desktop applications to the World
+ Wide Web. Using ActiveX tools, interactive web content can be created. 
+Example: In addition to viewing Word and Excel documents from within a 
+browser, additional functionality such as animation, credit card 
+transactions, or spreadsheet calculations."
+address,"Identifies the location of an Internet resource. Examples: an e-mail 
+address (sales[@]dataprise.com); a web address 
+(https://www.dataprise.com); or an internet address (192.168.100.1)."
+alias,"A short, easy to remember name created for use in place of a longer, 
+more complicated name; commonly used in e-mail applications. Also 
+referred to as a ""nickname""."
+anonymous ftp,"Archive sites where Internet users can log in and download files and 
+programs without a special username or password. Typically, you enter 
+anonymous as a username and your e-mail address as a password."
+anti-spam,"To prevent e-mail spam, both end users and administrators of e-mail 
+systems use various anti-spam techniques. Some of these techniques have 
+been embedded in products, services and software to ease the burden on 
+users and administrators. No one technique is a complete solution to the
+ spam problem, and each has trade-offs between incorrectly rejecting 
+legitimate e-mail vs. not rejecting all spam, and the associated costs 
+in time and effort. Dataprise Cloud-Based Anti-SPAM e-mail service 
+eliminates the problem almost entirely. Our state-of-the-art solution 
+lets users see only the e-mail they want — and filters out all of the 
+viruses and e-solicitations they don’t want before they reach user’s 
+computers and mobile devices. To learn more click here."
+applet,"A program capable of running on any computer regardless of the operating
+ system. Many applets can be downloaded from various sites on the 
+Internet."
+application,"A program designed for a specific purpose, such as word processing or graphic design."
+ascii file,"A file that can be opened and read by standard text editor programs (for
+ example, Notepad or Simple Text) on almost any type of computer. Also 
+referred to as ""plain text files"". Examples: documents saved in ASCII 
+format within word processors like Microsoft Word or WordPerfect; e-mail
+ messages created by a program like Outlook; or HTML files."
+at command set,"An industry standard set of commands beginning with the letters ""AT"" 
+that are used to control a modem. Example: ATDT tells the modem to dial 
+(D) using touch-tone dialing (T). ATDP specifies pulse dialing (P). Also
+ referred to as the ""Hayes Command Set""."
+attachment,"In this context, a file that is sent along with an e-mail message. ASCII
+ (plain text) files may be appended to the message text, but other types
+ of files are encoded and sent separately (common formats that can be 
+selected include MIME, BinHex, and Uuencode)."
+authentication,"The process of identifying yourself and the verification that you're who
+ you say you are. Computers where restricted information is stored may 
+require you to enter your username and password to gain access."
+backbone,A term that is often used to describe the main network connections that comprise the Internet or other major network.
+bandwidth,"A measurement of the amount of data that can be transmitted over a 
+network at any given time. The higher the network's bandwidth, the 
+greater the volume of data that can be transmitted."
+bcp,"Business Continuity Plan, or ""BCP,"" is a set of documents, instructions,
+ and procedures which enable a business to respond to accidents, 
+disasters, emergencies, and/or threats without any stoppage or hindrance
+ in its key operations. It is also called a business resumption plan, 
+disaster recovery plan, or recovery plan."
+bi,"Business Intelligence - A recognized industry term for organizational 
+analytics, including historical, current, and predictive views of 
+business operations."
+binary file,"A file that cannot be read by standard text editor programs like Notepad
+ or Simple Text. Examples: documents created by applications such as 
+Microsoft Word or WordPerfect or DOS files with the extension "".com"" or 
+"".exe""."
+binhex,"A common file format for Macintosh computers; it enables a binary file 
+to be transferred over the Internet as an ASCII file. Using a program 
+like Stuffit, a file can be encoded and renamed with an "".hqx"" 
+extension. The recipient uses a similar program to decode the file."
+bit,A binary digit (either 0 or 1); it is the most basic unit of data that can be recognized and processed by a computer.
+blended learning,"Instruction that combines aspects of both face-to-face (F2F) and online 
+learning experiences. An increasing number of courses at OSU now offer 
+this type of mix."
+blog,"Refers to a weblog, a web page that contains journal-like entries and links that are updated daily for public viewing."
+bluetooth,A wireless networking technology that allows users to send voice and data from one electronic device to another via radio waves.
+bmp,"Bitmap file; a common image format on Windows computers. Files of this 
+type usually have the suffix "".bmp"" as part of their name."
+bookmark,"A feature available in certain programs like Internet Explorer, Firefox,
+ and Acrobat Reader; it is a shortcut you can use to get to a particular
+ web page (IE and Firefox) or to a specified location within a document 
+(PDF)."
+boolean logic,"A form of algebra in which all values are reduced to either true/false, yes/no, on/off, or 1/0."
+bounce,A term applied to an e-mail message when it is returned to you as undeliverable.
+bridge,"A device used for connecting two Local Area Networks (LANs) or two 
+segments of the same LAN; bridges forward packets without analyzing or 
+re-routing them."
+broadband connection,"A high-speed Internet connection; at present, cable modems and DSL 
+(Digital Subscriber Lines) are the two technologies that are most 
+commonly available to provide such access."
+browser,"A program used to access World Wide Web pages. Examples: Firefox, Safari or Internet Explorer."
+buffer,"On a multitasking system, a certain amount of RAM that is allocated as a
+ temporary holding area so that the CPU can manipulate data before 
+transferring it to a particular device."
+buffered,"Data that is collected but not made immediately available. Compare to a 
+language translator who listens to a whole statement before repeating 
+what the speaker has said rather than providing a word-by-word 
+translation. Example: Streaming media data viewable using a tool like 
+RealMedia Player is buffered."
+business continuity,"Business continuity is the activity performed by an organization to 
+ensure that critical business functions will be available to customers, 
+suppliers, regulators, and other entities that must have access to those
+ functions. These activities include many daily chores such as project 
+management, system backups, change control, and help desk. Business 
+Continuity is not something implemented at the time of a disaster; 
+Business Continuity refers to those activities performed daily to 
+maintain service, consistency, and recoverability. To learn more please click here."
+business continuity plan,"Business Continuity Plan or ""BCP"" is a set of documents, instructions, 
+and procedures which enable a business to respond to accidents, 
+disasters, emergencies, and/or threats without any stoppage or hindrance
+ in its key operations. It is also called a business resumption plan, 
+disaster recovery plan, or recovery plan. Also see above explanation. To
+ learn more please click here."
+byod,"Bring Your Own Device or ""BYOD"" is a business and technology policy that
+ allows employees to bring in personal mobile devices and use these 
+devices to access company data, email, etc."
+byte,"A group of adjacent binary digits that a computer processes as a unit to
+ form a character such as the letter ""C"". A byte consists of eight bits."
+cable modem,"A special type of modem that connects to a local cable TV line to 
+provide a continuous connection to the Internet. Like an analog modem, a
+ cable modem is used to send and receive data, but the difference is 
+that transfer speeds are much faster. A 56 Kbps modem can receive data 
+at about 53 Kbps, while a cable modem can achieve about 1.5 Mbps (about 
+30 times faster). Cable modems attach to a 10Base-T Ethernet card inside
+ your computer."
+cache,"Refers to: 1) a region of computer memory where frequently accessed data
+ can be stored for rapid access; or 2) a optional file on your hard 
+drive where such data also can be stored. Examples: Internet Explorer 
+and Firefox have options for defining both memory and disk cache. The 
+act of storing data for fast retrieval is called ""caching""."
+captcha,"A challenge-response test in the form of an image of distorted text the 
+user must enter that to determine whether the user is human or an 
+automated bot."
+carrier services,"As authorized agents for the biggest names in the telecommunications 
+industry, Dataprise will deliver the most appropriate and cost-effective
+ carrier solutions for your organization. Dataprise will design, 
+implement and support all of your Data, Internet, Voice and Conferencing
+ solutions. To learn more please click here."
+case-sensitive,"Generally applies to a data input field; a case-sensitive restriction 
+means lower-case letters are not equivalent to the same letters in 
+upper-case. Example: ""data"" is not recognized as being the same word as 
+""Data"" or ""DATA""."
+cbt,"Computer-Based Training; a type of training in which a student learns a 
+particular application by using special programs on a computer. 
+Sometimes referred to as ""CAI"" (Computer-Assisted Instruction) or ""CBI"" 
+(Computer-Based Instruction), although these two terms may also be used 
+to describe a computer program used to assist a teacher or trainer in 
+classroom instruction."
+cd-r drive,"A type of disk drive that can create CD-ROMs and audio CDs. CD-R drives 
+that feature multi session recording allow you to continue adding data 
+to a compact disk which is very important if you plan on using the drive
+ for backup."
+cd-rom,"Compact Disk, Read Only Memory; a high-capacity secondary storage 
+medium. Information contained on a CD is read-only. Special CD-ROM 
+mastering equipment available in the OIT Multimedia Lab can be reserved 
+for creating new CDs."
+"cd-rw, cd-r disk","A CD-RW disk allows you to write data onto it multiple times instead of 
+just once (a CD-R disk). With a CD-R drive you can use a CD-RW disk just
+ like a floppy or zip disk for backing up files, as well as for creating
+ CD-ROMs and audio CDs."
+cgi,"Common Gateway Interface; a mechanism used by most web servers to 
+process data received from a client browser (e.g., a user). CGI scripts 
+contain the instructions that tell the web server what to do with the 
+data."
+chat,"Real-time communication between two or more users via 
+networked-connected computers. After you enter a chat (or chat room), 
+any user can type a message that will appear on the monitors of all the 
+other participants. While most ISPs offer chat, it is not supported by 
+OIT. However, the campus CMS (Carmen) supported by TELR does provide the
+ capability for live chat among students participating in online 
+courses."
+client,"A program or computer that connects to and requests information from a 
+server. Examples: Internet Explorer or Firefox. A client program also 
+may be referred to as ""client software"" or ""client-server software""."
+client-server technology,"Refers to a connection between networked computers in which the services
+ of one computer (the server) are requested by the other (the client). 
+Information obtained is then processed locally on the client computer."
+cloud,"(See below): a common shorthand for a provided cloud computing service 
+(or even an aggregation of all existing cloud services) is ""The 
+Cloud"".To learn more please click here."
+cloud computing,"A general term used to describe Internet services such as social 
+networking services (e.g., Facebook and Twitter), online backup 
+services, and applications that run within a Web browser. Cloud 
+computing also includes computer networks that are connected over the 
+Internet for server redundancy or cluster computing purposes."
+cms,"'Content Management System' is the collection of procedures used to 
+manage work flow in a collaborative environment. In a CMS, data can be 
+defined as nearly anything: documents, movies, pictures, phone numbers, 
+scientific data, and so forth. CMSs are frequently used for storing, 
+controlling, revising, semantically enriching, and publishing 
+documentation. Serving as a central repository, the CMS increases the 
+version level of new updates to an already existing file. Version 
+control is one of the primary advantages of a CMS."
+compress,"The process of making a file smaller so that it will save disk space and
+ transfer faster over a network. The most common compression utilities 
+are Winrar for PC or compatible computers (.zip files) and or Stuffit 
+(.sit files) for Macintosh computers."
+connect,"A term that commonly refers to accessing a remote computer; also a 
+message that appears at the point when two modems recognize each other."
+cookie,"A small piece of information you may be asked to accept when connecting 
+to certain servers via a web browser. It is used throughout your session
+ as a means of identifying you. A cookie is specific to, and sent only 
+to the server that generated it."
+courseware,Software designed specifically for use in a classroom or other educational setting.
+cpu,Central processing unit; the part of a computer that oversees all operations and calculations.
+csp,Cloud Service Provider; a business model for providing cloud services. To learn more please click here.
+css,"Cascading Style Sheet; A set of rules that define how web pages are 
+displayed using CSS, designers can create rules that define how page"
+cursor,"A special symbol that indicates where the next character you type on 
+your screen will appear. You use your mouse or the arrow keys on your 
+keyboard to move the cursor around on your screen."
+cyberspace,A term describing the world of computers and the society that uses them
+daas,"Desktop-as-a-Service - Also called virtual desktop or hosted desktop 
+services, it is the outsourcing of a virtual desktop infrastructure 
+(VDI) to a third- party service provider."
+daemon,"A special small program that performs a specific task; it may run all 
+the time watching a system, or it can take action only when a task needs
+ to be performed. Example: If an e-mail message is returned to you as 
+undeliverable, you may receive a message from the mailer daemon."
+database,"A collection of information organized so that a computer application can
+ quickly access selected information; it can be thought of as an 
+electronic filing system. Traditional databases are organized by fields,
+ records (a complete set of fields), and files (a collection of 
+records). Alternatively, in a Hypertext database, any object (e.g., 
+text, a picture, or a film) can be linked to any other object."
+data center,"A data center (data centre / datacentre / datacenter) is a facility used
+ to house computer systems and associated components, such as 
+telecommunications and storage systems. It generally includes redundant 
+or backup power supplies, redundant data communications connections, 
+environmental controls (e.g., air conditioning, fire suppression) and 
+security devices."
+decompress,"Opposite of compressing a file; the process of restoring the file to its
+ original size and format. The most common programs for decompressing 
+files are Winrar for PC and compatible computers (.zip files) and 
+Stuffit Expander (.sit files) for Macintosh computers."
+defragmentation,The process of rewriting parts of a file to contiguous sectors on a hard drive to increase the speed of access and retrieval.
+degauss,"A process used to remove magnetism from a computer monitors. Note 
+flat-panel displays do not have a degauss button since magnetism doesn't
+ build up in them."
+desktop,"On computers like IBM PC or compatibles and Macintoshes, the backdrop where windows and icons for disks and applications reside."
+dhcp,"Dynamic Host Configuration Protocol; a protocol that lets a server on a 
+local network assign temporary IP addresses to a computer or other 
+network devices."
+dialog box,"Sometimes referred to as a window; on a graphical user interface system,
+ an enclosed area displayed by a program or process to prompt a user for
+ entry of information in one or more boxes (fields)."
+dial-up adapter,"A network component within Windows that enables you to connect to a dial
+ up server via a modem. Users running dial-up connections on Windows 
+computers must have Dial-Up Adapter installed and properly configured."
+dial up connection,"A connection from your computer that goes through a regular telephone 
+line. You use special communications software to instruct your modem to 
+dial a number to access another computer system or a network. May also 
+be referred to as ""dial up networking""."
+digital asset,"Intellectual content which has been digitized and can be referenced or 
+retrieved online; for example, PowerPoint slides, audio or video files, 
+or files created in a word processing application, etc."
+digitize,"Sometimes referred to as digital imaging; the act of translating an 
+image, a sound, or a video clip into digital format for use on a 
+computer. Also used to describe the process of converting coordinates on
+ a map to x,y coordinates for input to a computer. All data a computer 
+processes must be digitally encoded as a series of zeroes and ones."
+dimm,"Dual In-line Memory Module; a small circuit board that can hold a group 
+of memory chips. A DIMM is capable of transferring 64 bits instead of 
+the 32 bits each SIMM can handle. Pentium processors require a 64-bit 
+path to memory so SIMMs must be installed two at a time as opposed to 
+one DIMM at a time."
+directory,"An area on a disk that contains files or additional divisions called 
+""subdirectories"" or ""folders"". Using directories helps to keep files 
+organized into separate categories, such as by application, type, or 
+usage."
+disaster recovery,"Disaster recovery is the process, policies and procedures related to 
+preparing for recovery or continuation of technology infrastructure 
+critical to an organization after a natural or human-induced disaster. 
+Disaster recovery is a subset of business continuity. While business 
+continuity involves planning for keeping all aspects of a business 
+functioning in the midst of disruptive events, disaster recovery focuses
+ on the IT or technology systems that support business functions. 
+Dataprise's specialist Disaster Recovery Consulting Team can help you 
+devise a near bulletproof Disaster Recovery Plan, so that you can have 
+total piece of mind that your critical systems and processes are safe, 
+and/or can recover from any potential data loss situation. To learn more
+ please click here."
+disaster recovery planning,"Also referred to as ""DRP"". Please see above explanation."
+discussion group,Another term for an online newsgroup or forum.
+distance education,"May also be referred to as ""online learning"" or ""eLearning."" A means of 
+instruction that implies a course instructor and students are separated 
+in space and perhaps, in time. Interaction may be synchronous 
+(facilitated) or asynchronous (self-paced). Students can work with 
+various course materials, or they may use tools like chat or discussion 
+groups to collaborate on projects."
+distance learning,The goal of distance education; distance learning and distance education are often used interchangeably.
+dither,"A means by which the illusion of new colors and shades is created by 
+varying the pattern of dots; the more dither patterns a device or 
+program supports, the more shades of gray it can represent. Also 
+referred to as halftoning in the context of printing."
+dns,"Domain Name System; a service for accessing a networked computer by name rather than by numerical, (IP) address."
+domain,"Part of an Internet address. The network hierarchy consists of domains 
+and subdomains. At the top are a number of major categories (e.g., com, 
+edu, gov); next are domains within these categories (e.g., ohio-state); 
+and then there are subdomains. The computer name is at the lowest level 
+of the hierarchy."
+download,The process of transferring one or more files from a remote computer to your local computer. The opposite action is upload.
+dpi,"Dots per inch; a measure of a printer's resolution. The higher the 
+number, the better the print quality. A minimum of 300 dpi usually is 
+required for professional quality printing."
+draas,Disaster Recovery as a Service; a service that helps recover data in the event of a server failure or natural disaster.
+drag and drop,"The act of clicking on one icon and moving it on top of another icon to 
+initiate a specific action. Example: Dragging a file on top of a folder 
+to copy it to a new location."
+dsl,Digital Subscriber Line; an always on broadband connection over standard phone lines.
+dvd,"Digital video disk; a type of compact disc that holds far more 
+information than the CD-ROMs that are used for storing music files. A 
+DVD can hold a minimum of 4.7 GB, enough for a full-length movie. MPEG-2
+ is used to compress video data for storage on a DVD. DVD drives are 
+backward-compatible and can play CD-ROMs."
+"dvd-rw, dvd-r disk","A DVD-RW disk allows you to write data onto it multiple times instead of
+ just once like on a DVD-R disk. A DVD disk can hold a minimum of 4.7GB 
+which is enough to store a full-length movie. Other uses for DVDs 
+include storage for multimedia presentations that include both sound and
+ graphics."
+eap,Extensible Authentication Protocol; a general protocol for authentication that also supports multiple authentication methods.
+ega,"Extended Graphics Adapter; a card (or board) usually found in older PCs 
+that enables the monitor to display 640 pixels horizontally and 350 
+vertically."
+elearning,"Electronic learning; applies to a wide scope of processes including 
+Web-based learning, computer-based instruction, virtual classrooms, and 
+digital collaboration. Content may be delivered in a variety of ways 
+including via the Internet, satellite broadcast, interactive TV, and 
+DVD- or CD-ROMs."
+e-mail,"Electronic mail; the exchange of messages between users who have access 
+to either the same system or who are connected via a network (often the 
+Internet). If a user is not logged on when a new message arrives, it is 
+stored for later retrieval."
+e-mail archiving,"Email archiving is typically a stand-alone IT application that 
+integrates with an enterprise email server, such a Microsoft Exchange. 
+In addition to simply accumulating email messages, these applications 
+index and provide quick, searchable access to archived messages 
+independent of the users of the system, using different technical 
+methods of implementation. The reasons a company may opt to implement an
+ email archiving solution include protection of mission critical data, 
+record retention for regulatory requirements or litigation, and reducing
+ production email server load. Dataprise Cloud-based e-mail archiving 
+service offers you the latest storage technologies in a secure, 
+redundant and easy-to-use format. We take care of all the fine details, 
+from configuring our archiving software to automatically transferring 
+the files to our secure remote servers."
+emoticon,"A combination of keyboard characters meant to represent a facial 
+expression. Frequently used in electronic communications to convey a 
+particular meaning, much like tone of voice is used in spoken 
+communications. Examples: the characters 🙂 for a smiley face or 😉 for a
+ wink."
+emulation,"Refers to the ability of a program or device to imitate another program 
+or device; communications software often include terminal emulation 
+drivers to enable you to log on to a mainframe. There also are programs 
+that enable a Mac to function as a PC."
+encryption,The manipulation of data to prevent accurate interpretation by all but those for whom the data is intended.
+eps,Encapsulated PostScript; a graphics format that describes an image in the PostScript language.
+ethernet,"A popular network technology that enables data to travel at 10 megabits 
+per second. Campus microcomputers connected to a network have Ethernet 
+cards installed that are attached to Ethernet cabling. An Ethernet 
+connection is often referred to as a ""direct connection"" and is capable 
+of providing data transmission speeds over 500 Kbps."
+ethernet card,"An adapter card that fits into a computer and connects to Ethernet 
+cabling; different types of adaptor cards fit specific computers. 
+Microcomputers connected to the campus network have some type of 
+Ethernet card installed. Example: computers in campus offices or in 
+dorms rooms wired for ResNet. Also referred to as ""Ethernet adapter""."
+expansion card,"Also referred to as an expansion board; a circuit board you can insert 
+into a slot inside your computer to give it added functionality. A card 
+can replace an existing one or may be added in an empty slot. Some 
+examples include sound, graphics, USB, Firewire, and internal modem 
+cards."
+extension,"A suffix preceded by a period at the end of a filename; used to describe
+ the file type. Example: On a Windows computer, the extension "".exe"" 
+represents an executable file."
+female connector,A cable connector that has holes and plugs into a port or interface to connect one device to another.
+field,"A single piece of information within a database (e.g., an entry for name
+ or address). Also refers to a specific area within a dialog box or a 
+window where information can be entered."
+file,"A collection of data that has a name (called the filename). Almost all 
+information on a computer is stored in some type of file. Examples: data
+ file (contains data such as a group of records); executable file 
+(contains a program or commands that are executable); text file 
+(contains data that can be read using a standard text editor)."
+filter,"Refers to: 1) a program that has the function of translating data into a
+ different format (e.g., a program used to import or export data or a 
+particular file); 2) a pattern that prevents non-matching data from 
+passing through (e.g., email filters); and 3) in paint programs and 
+image editors, a special effect that can be applied to a bit map."
+finger,"A type of directory service on many UNIX systems. Queries take the 
+format firstname_lastname (e.g., jane_doe) or for more complete 
+information,=firstname.lastname (e.g.,=jane_doe)."
+firewall,"A method of preventing unauthorized access to or from a particular 
+network; firewalls can be implemented in both hardware and software, or 
+both."
+firewire,"A way to connect different pieces of equipment so they can quickly and 
+easily share information. FireWire (also referred to as IEEE1394 High 
+Performance Serial Bus) is very similar to USB. It preceded the 
+development of USB when it was originally created in 1995 by Apple. 
+FireWire devices are hot pluggable, which means they can be connected 
+and disconnected any time, even with the power on. When a new FireWire 
+device is connected to a computer, the operating system automatically 
+detects it and prompts for the driver disk (thus the reference ""plug-and
+ play"")."
+flash drive,A small device that plugs into computer's USB port and functions as a portable hard drive.
+flash memory,"A type of memory that retains information even after power is turned 
+off; commonly used in memory cards and USB flash drives for storage and 
+transfer of data between computers and other digital products."
+folder,"An area on a hard disk that contains a related set of files or 
+alternatively, the icon that represents a directory or subdirectory."
+font,"A complete assortment of letters, numbers, and symbols of a specific 
+size and design. There are hundreds of different fonts ranging from 
+businesslike type styles to fonts composed only of special characters 
+such as math symbols or miniature graphics."
+frames,"A feature of some web browsers that enables a page to be displayed in 
+separate scrollable windows. Frames can be difficult to translate for 
+text-only viewing via ADA guidelines, so their use is increasingly being
+ discouraged."
+freeware,"Copyrighted software available for downloading without charge; unlimited
+ personal usage is permitted, but you cannot do anything else without 
+express permission of the author. Contrast to shareware; copyrighted 
+software which requires you to register and pay a small fee to the 
+author if you decide to continue using a program you download."
+fragmentation,"The scattering of parts of the same disk file over different areas of a 
+disk; fragmentation occurs as files are deleted and new ones are added."
+ftp,"File Transfer Protocol; a method of exchanging files between computers 
+via the Internet. A program like WS_FTP for IBM PC or compatibles or 
+Fetch for Macintosh is required. Files can contain documents or programs
+ and can be ASCII text or binary data."
+generative ai,"a type of artificial intelligence (AI) technology that can 
+create multiple types of content, including  images, audio, text, 
+and synthetic data."
+gif,"Graphics Interchange Format; a format for a file that contains a graphic
+ or a picture. Files of this type usually have the suffix "".gif"" as part
+ of their name. Many images seen on web pages are GIF files."
+gigabyte (gig or gb),"1024 x 1024 x 1024 (2 to the 30th power) bytes; it's usually sufficient 
+to think of a gigabyte as approximately one billion bytes or 1000 
+megabytes."
+gps,"Global Positioning System; a collection of Earth-orbiting satellites. In
+ a more common context, GPS actually refers to a GPS receiver which uses
+ a mathematical principle called ""trilateration"" that can tell you 
+exactly where you are on Earth at any moment."
+greyware,"Greyware (or grayware) refers to a malicious software or code that is 
+considered to fall in the ""grey area"" between normal software and a 
+virus. Greyware is a term for which all other malicious or annoying 
+software such as adware, spyware, trackware, and other malicious code 
+and malicious shareware fall under."
+gui,"Graphical user interface; a mouse-based system that contains icons, 
+drop-down menus, and windows where you point and click to indicate what 
+you want to do. All new Windows and Macintosh computers currently being 
+sold utilize this technology."
+handshaking,"The initial negotiation period immediately after a connection is 
+established between two modems. This is when the modems agree about how 
+the data will be transmitted (e.g., error correction, packet size, 
+etc.). The set of rules they agree on is called the protocol."
+hard disk,"A storage device that holds large amounts of data, usually in the range 
+of hundreds to thousands of megabytes. Although usually internal to the 
+computer, some types of hard disk devices are attached separately for 
+use as supplemental disk space. ""Hard disk"" and ""hard drive"" often are 
+used interchangeably but technically, hard drive refers to the mechanism
+ that reads data from the disk."
+hardware,"The physical components of a computer including the keyboard, monitor, 
+disk drive, and internal chips and wiring. Hardware is the counterpart 
+of software."
+header,"The portion of an e-mail message or a network newsgroup posting that 
+precedes the body of the message; it contains information like who the 
+message is from, its subject, and the date. A header also is the portion
+ of a packet that proceeds the actual data and contains additional 
+information the receiver will need."
+help desk,"A help desk is an information and assistance resource that troubleshoots
+ problems with computers or similar products. Corporations often provide
+ help desk support their employees and to their customers via a 
+toll-free number, website and/or e-mail. Dataprise offers 3 types of 
+help desk service: 24 x 7 Support365™, Outsourced and private labeled. 
+To learn more about our services please click here."
+helper application,"A program used for viewing multimedia files that your web browser cannot
+ handle internally; files using a helper application must be moved to 
+your computer before being shown or played. Contrast to a plug-in which 
+enables you to view the file over the Internet without first downloading
+ it."
+home page,"A document you access using a web browser like Firefox or Internet 
+Explorer. It usually refers to the first page of a particular web site; 
+it also is the page that automatically loads each time you start your 
+browser."
+host,"A computer accessed by a user working at a remote location. Also refers 
+to a specific computer connected to a TCP/IP network like the Internet."
+html,"HyperText Markup Language; a language used for creating web pages. 
+Various instructions and sets of tags are used to define how the 
+document will look."
+http,"HyperText Transfer Protocol; a set of instructions that defines how a 
+web server and a browser should interact. Example: When you open a 
+location (e.g., enter a URL) in your browser, what actually happens is 
+an HTTP command is sent to the web server directing it to fetch and 
+return the requested web page."
+hyperlink,"Connects one piece of information (anchor) to a related piece of 
+information (anchor) in an electronic document. Clicking on a hyperlink 
+takes you to directly to the linked destination which can be within the 
+same document or in an entirely different document. Hyperlinks are 
+commonly found on web pages, word documents and PDF files."
+hypertext,"Data that contains one or more links to other data; commonly seen in web
+ pages and in online help files. Key words usually are underlined or 
+highlighted. Example: If you look for information about ""Cats"" in a 
+reference book and see a note that says ""Refer also to Mammals"" the two 
+topics are considered to be linked. In a hypertext file, you click on a 
+link to go directly to the related information."
+hypervisor,"A hypervisor, also called virtual machine manager (VMM), is one of many 
+hardware virtualization techniques that allow multiple operating 
+systems, termed guests, to run concurrently on a host computer. It is so
+ named because it is conceptually one level higher than a supervisory 
+program. The hypervisor presents to the guest operating systems a 
+virtual operating platform and manages the execution of the guest 
+operating systems. Multiple instances of a variety of operating systems 
+may share the virtualized hardware resources. Hypervisors are installed 
+on server hardware whose only task is to run guest operating systems. 
+Non-hypervisor virtualization systems are used for similar tasks on 
+dedicated server hardware, but also commonly on desktop, portable and 
+even handheld computers."
+iaas,"Infrastructure as a Service; In the most basic cloud-service model, 
+providers of IaaS offer computers - physical or (more often) virtual 
+machines - and other resources. To learn more please click here."
+icon,"On a system like Windows or Macintosh that uses a graphical user 
+interface (GUI), a small picture or symbol that represents some object 
+or function. Examples: a file folder for a directory; a rectangle with a
+ bent corner for a file; or a miniature illustration for a program."
+ics,"Internet Connection Sharing; a feature in Windows that when enabled, 
+allows you to connect computer on your home network to the Internet via 
+one computer."
+ieee 1394 port,An interface for attaching high-speed serial devices to your computer; IEEE 1394 connectors support plug and play.
+image map,"A graphic overlay that contains more than one area (or hot spot) which 
+is clickable and links to another web page or anchor. Image maps provide
+ an alternative to text links for directing the user to additional 
+information."
+imap,"Internet Message Access Protcol. A method of accessing e-mail messages 
+on a server without downloading them to your local hard drive; it is the
+ main difference between IMAP and POP3 which requires messages to be 
+downloaded to a user's hard drive before the message can be read."
+internet,"A worldwide network based on the TCP/IP protocol that can connect almost
+ any make or model of popular computers from micros to supercomputers. 
+Special programs called ""clients"" enable users with a network connection
+ to do things like process e-mail or browse web sites using the familiar
+ interface of a desktop computer."
+internet domain management,"The process of choosing, hosting, maintaining and securing internet domain(s)."
+internet explorer,"A client program from Microsoft that comes pre installed on most new PC 
+or compatible computers; enables you to browse the World Wide Web."
+internet radio,"An audio broadcasting service transmitted via the Internet; broadcasts 
+consist of a continuous stream. A drawback is the inability to control 
+selection as you can when listening to traditional radio broadcasting."
+ip address,Internet Protocol address; every computer connected to the Internet has a unique identifying number. Example: 192.168.100.2.
+irc,Internet Relay Chat; a system that enables two or more Internet users to conduct online discussions in real time.
+irq,"Interrupt request; refers to a number associated with a serial port on 
+an PC or compatible computer. It usually can be changed by flipping a 
+dip switch. Occasionally, when you're using a modem connect to the 
+Internet, you may need to adjust the IRQ number assigned to the serial 
+port which connects the modem to avoid conflicts with another device 
+like your mouse."
+isp,Internet Service Provider; an organization or company that provides Internet connectivity.
+it assessment,"An IT Assessment is the practice of gathering information on part or 
+whole of a IT network infrastructure, and then presented in a detailed 
+report. This report typically analyzes the current state or health of 
+technology or services and identifies areas needing improvement or 
+prepare for a some type of system or application upgrade. A IT 
+Assessment can be performed in-house or outsourced to an IT vendor. 
+Dataprise has developed a comprehensive assessment process that includes
+ conducting thorough, in-depth reviews all of your critical technology 
+areas, evaluating them against best practices and then providing you 
+with a roadmap to better leverage your IT as a competitive advantage. To
+ learn more please click here."
+iv&v,"Independent Verification and Validation (IV&V) is the process of 
+checking that a project, service, or system meets specifications and 
+that it fulfills its intended purpose. If you’ve recently implemented a 
+new technology solution, you may want an independent party to assess the
+ quality of the work."
+java,"A general purpose programming language commonly used in conjunction with
+ web pages that feature animation. Small Java applications are called 
+Java applets; many can be downloaded and run on your computer by a 
+Java-compatible browser like Firefox or Internet Explorer."
+javascript,"A publicly available scripting language that shares many of the features
+ of Java; it is used to add dynamic content (various types of 
+interactivity) to web pages."
+jpeg,"Joint Photographic Experts Group; a graphics format which compresses an 
+image to save space. Most images imbedded in web pages are GIFs, but 
+sometimes the JPEG format is used (especially for detailed graphics or 
+photographs). In some cases, you can click on the image to display a 
+larger version with better resolution."
+justified,"A word processing format in which text is formatted flush with both the 
+left and right margins. Other options include left justified (text is 
+lined up against the left margin) and right justified (text is lined up 
+against the right margin)."
+k,"An abbreviation for kilobyte; it contains 1,024 bytes; in turn 1,024 kilobytes is equal to one megabyte."
+kbps,"Kilobits per second; a measure of data transfer speed; one Kbps is 1,000 bits per second. Example: a 28.8 Kbps modem."
+kerberos,"An authentication system developed at the Massachusetts Institute of 
+Technology (MIT); it enables the exchange of private information across 
+an open network by assigning a unique key called a ""ticket"" to a user 
+requesting access to secure information."
+kerning,"The amount of space between characters in a word; in desktop publishing,
+ it is typically performed on pairs of letters or on a short range of 
+text to fine-tune the character spacing."
+keyword,"Most often refers to a feature of text editing and database management 
+systems; a keyword is an index entry that correlates with a specific 
+record or document."
+"kilobyte (k, kb, or kb)","1,024 (2 to the 10th power) bytes; often used to represent one thousand 
+bytes. Example: a 720K diskette can hold approximately 720,000 bytes (or
+ characters)."
+knowledge base,"A database where information common to a particular topic is stored 
+online for easy reference; for example, a frequently-asked questions 
+(FAQ) list may provide links to a knowledge base."
+lan,"Local area network; a network that extends over a small area (usually 
+within a square mile or less). Connects a group of computers for the 
+purpose of sharing resources such as programs, documents, or printers. 
+Shared files often are stored on a central file server."
+laser printer,"A type of printer that produces exceptionally high quality copies. It 
+works on the same principle as a photocopier, placing a black powder 
+onto paper by using static charge on a rolling drum."
+leading,"The vertical space between lines of text on a page; in desktop 
+publishing, you can adjust the leading to make text easier to read."
+learning management system (lms),"Software used for developing, using, and storing course content of all 
+types. Information within a learning management system often takes the 
+form of learning objects (see ""learning object"" below)."
+learning object,"A chunk of course content that can be reused and independently 
+maintained. Although each chunk is unique in its content and function, 
+it must be able to communicate with learning systems using a 
+standardized method not dependent on the system. Each chunk requires a 
+description to facilitate search and retrieval."
+link,Another name for a hyperlink.
+linux,"An open-source operating system that runs on a number of hardware 
+platforms including PCs and Macintoshes. Linux is freely available over 
+the Internet."
+listprocessor,"A program that manages electronic mailing lists; OIT is responsible for 
+the ListProcessor software and also handles requests from the OSU 
+community or new mailing lists."
+"listserv, listserver","An electronic mailing list; it provides a simple way of communicating 
+with a large number of people very quickly by automating the 
+distribution of electronic mail. At OSU, mailing lists are used not only
+ for scholarly communication and collaboration, but also as a means of 
+facilitating and enhancing classroom education."
+"log in, log on","The process of entering your username and password to gain access to a 
+particular computer; e.g., a mainframe, a network or secure server, or 
+another system capable of resource sharing."
+maas,"Metal-as-a-Service; The dynamic provisioning and deployment of whole 
+physical servers, as opposed to the provisioning of virtual machines."
+mac,Media Access Control; The hardware address of a device connected to a shared network.
+macintosh,"A personal computer introduced in the mid-1980s as an alternative to the
+ IBM PC. Macintoshes popularized the graphical user interface and the 3 
+1/2 inch diskette drive."
+mail server,"A networked computer dedicated to supporting electronic mail. You use a 
+client program like Microsoft Outlook for retrieving new mail from the 
+server and for composing and sending messages."
+mailing list,"A collection of e-mail addresses identified by a single name; mailing 
+lists provide a simple way of corresponding with a group of people with a
+ common interest or bond. There are two main types of lists: 1) one you 
+create within an e-mail program like Outlook that contains addresses for
+ two or more individuals you frequently send the same message; and 2) a 
+Listserve type that requires participants to be subscribed (e.g., a 
+group of collaborators, a class of students, or often just individuals 
+interested in discussing a particular topic)."
+main memory,"The amount of memory physically installed in your computer. Also referred to as ""RAM""."
+mainframe,"A very large computer capable of supporting hundreds of users running a 
+variety of different programs simultaneously. Often the distinction 
+between small mainframes and minicomputers is vague and may depend on 
+how the machine is marketed."
+male connector,A cable connector that has pins and plugs into a port or interface to connect one device to another.
+malware,"Software programs designed to damage or do other unwanted actions on a 
+computer; common examples of malware include viruses, worms, trojan 
+horses, and spyware."
+managed workstations,"A Managed Workstation reduces downtime, improves maintenance, increases 
+productivity and data security through an effective blend of Help Desk 
+and on-site support and centralized deployment of software patches and 
+virus protection updates. Dataprise can deliver expert support at the 
+workstation level for all of your users, at any location. Using our 
+DesktopStreaming™ live online support technology, our highly qualified 
+certified technical staff, working remotely, are able to see exactly 
+what is happening on a user’s computer screen — allowing us to quickly 
+isolate issues and begin remediation."
+mapi,"Messaging Application Programming Interface; a system built into 
+Microsoft Windows that enables different e-mail programs to interface to
+ distribute e-mail. When both programs are MAPI-enabled, they can share 
+messages."
+mdm,"Mobile Device Management; Any routine or tool intended to distribute 
+applications, data, and configuration settings to mobile communications 
+devices. The intent of MDM is to optimize the functionality and security
+ of a mobile communications network. MDM must be part of a coherent BYOD
+ strategy."
+megabyte (meg or mb),"1,024 x 1,024 (2 to the 20th power) bytes; it's usually sufficient to think of a megabytes as one million bytes."
+mhz or mhz,"Megahertz; a measurement of a microprocessor's speed; one MHz represents
+ one million cycles per second. The speed determines how many 
+instructions per second a microprocessor can execute. The higher the 
+megahertz, the faster the computer."
+menu,"In a graphical user interface, a bar containing a set of titles that 
+appears at the top of a window. Once you display the contents of a menu 
+by clicking on its title, you can select any active command (e.g., one 
+that appears in bold type and not in a lighter, gray type)."
+microsoft exchange,"Microsoft Exchange Server is the server side of a client–server, 
+collaborative application product developed by Microsoft. It is part of 
+the Microsoft Servers line of server products and is used by enterprises
+ using Microsoft infrastructure products. Exchange's major features 
+consist of electronic mail, calendaring, contacts and tasks; support for
+ mobile and web-based access to information; and support for data 
+storage. Dataprise has a 100% hosted Exchange solution that includes 
+clustered and redundant Microsoft Exchange servers that provide more 
+then enough horsepower to support all of your organization’s messaging 
+needs. And we handle the entire set-up and configuration for you. To 
+learn more please click here."
+microsoft windows,"A group of operating systems for PC or compatible computers; Windows 
+provides a graphical user interface so you can point and click to 
+indicate what you want to do."
+mime,"Multipurpose Internet Mail Extensions; a protocol that enables you to 
+include various types of files (text, audio, video, images, etc.) as an 
+attachment to an e-mail message."
+modem,"A device that enables a computer to send and receive information over a 
+normal telephone line. Modems can either be external (a separate device)
+ or internal (a board located inside the computer's case) and are 
+available with a variety of features such as error correction and data 
+compression."
+moderator,"A person who reviews and has the authority to block messages posted to a
+ supervised or ""moderated"" network newsgroup or online community."
+monitor,"The part of a computer that contains the screen where messages to and 
+from the central processing unit (CPU) are displayed. Monitors come in a
+ variety of sizes and resolutions. The higher the number of pixels a 
+screen is capable of displaying, the better the resolution. Sometimes 
+may be referred to as a CRT."
+mouse,"A handheld device used with a graphical user interface system. Common 
+mouse actions include: 1) clicking the mouse button to select an object 
+or to place the cursor at a certain point within a document; 2) 
+double-clicking the mouse button to start a program or open a folder; 
+and 3) dragging (holding down) the mouse button and moving the mouse to 
+highlight a menu command or a selected bit of text."
+mpeg,"Motion Picture Experts Group; a high quality video format commonly used 
+for files found on the Internet. Usually a special helper application is
+ required to view MPEG files."
+mrb,"Managed Remote Back Up; a service that provides users with a system for 
+the backup, storage, and recovery of data using cloud computing."
+msp,Managed Service Provider; A business model for providing information-technology services. To learn more on what is an MSP click here.
+mssp,"An MSSP is an organization that takes care of businesses’ 
+security-related needs, such as threat detection, risk assessment, and 
+incident response. To learn more on what is an MSSP click here."
+multimedia,"The delivery of information, usually to a personal computer, in a 
+combination of different formats including text, graphics, animation, 
+audio, and video."
+multitasking,"The ability of a CPU to perform more than one operation at the same 
+time; Windows and Macintosh computers are multitasking in that each 
+program that is running uses the CPU only for as long as needed and then
+ control switches to the next task."
+naas,"Network as a Service; a category of cloud services that provides users 
+with the capability of where the capability provided to the cloud 
+service user is to usinge network/transport connectivity services and/or
+ inter-cloud network connectivity services."
+nameserver,A computer that runs a program for converting Internet domain names into the corresponding IP addresses and vice versa.
+nat,"Network Address Translation; a standard that enables a LAN to use a set 
+of IP addresses for internal traffic and a single IP address for 
+communications with the Internet."
+network,"A group of interconnected computers capable of exchanging information. A
+ network can be as few as several personal computers on a LAN or as 
+large as the Internet, a worldwide network of computers."
+network adapter,A device that connects your computer to a network; also called an adapter card or network interface card.
+network hub,A common connection point for devices on a network.
+nntp,"Network News Transport Protocol; the protocol used for posting, distributing, and retrieving network news messages."
+network monitoring,"Dataprise Cloud-based Network Monitoring service, can configure and 
+remotely monitor all of your important network systems (e-mail, servers,
+ routers, available disk space, backup applications, critical virus 
+detection, and more). If our system detects a problem, it alerts the 
+Dataprise Technical Support Center, so we can take corrective action. 
+Depending on prearranged instructions from your own network engineers, 
+we’ll correct the problem immediately, wait until the next business day 
+or simply notify you of the issue. To learn more please click here."
+network security,"Network security consists of the provisions and policies adopted by a 
+network administrator to prevent and monitor unauthorized access, 
+misuse, modification, or denial of the computer network and 
+network-accessible resources. Network Security is the authorization of 
+access to data in a network, which is controlled by a network 
+administrator. Dataprise uses state-of-the-art network security 
+techniques while providing authorized personnel access to important 
+files and applications. Every organization’s needs are different and 
+hackers are always adapting their techniques, so we are extremely 
+serious about staying up to date with the latest network security tools,
+ threats and industry developments. To learn more please click here."
+ocr,"Optical character recognition; the act of using a visual scanning device
+ to read text from hard copy and translate it into a format a computer 
+can access (e.g., an ASCII file). OCR systems include an optical scanner
+ for reading text and sophisticated software for analyzing images."
+on-cloud,"Dataprise realizes that businesses are moving more and more of their 
+critical infrastructure to Cloud-based providers. 'On-Cloud' is 
+currently our own term coined for providing management and support for 
+your Cloud-based systems and processes."
+on-site,"At-place-of-work-or-business support, typically provided by a technically qualified individual."
+online,"A term that has commonly come to mean ""connected to the Internet"". It 
+also is used to refer to materials stored on a computer (e.g., an online
+ newsletter) or to a device like a printer that is ready to accept 
+commands from a computer."
+opentype,"OpenType is a format for scalable computer fonts. It was built on its 
+predecessor TrueType, retaining TrueType's basic structure and adding 
+many intricate data structures for prescribing typographic behavior. 
+OpenType is a registered trademark of Microsoft Corporation."
+paas,"Platform as a Service, in the PaaS model, cloud providers deliver a 
+computing platform that typically including an operating system, 
+programming language execution environment, database, and web server."
+packet,"A unit of transmission in data communications. The TCP/IP protocol 
+breaks large data files into smaller chunks for sending over a network 
+so that less data will have to be re-transmitted if errors occur."
+palette,"The range of colors a computer or an application is able to display. 
+Most newer computers can display as many as 16 million colors, but a 
+given program may use only 256 of them. Also refers to a display box 
+containing a set of related tools within a desktop publishing or 
+graphics design program."
+page,"Refers to an HTML document on the World Wide Web or to a particular web 
+site; usually pages contain links to related documents (or pages)."
+parallel port,"An interface on a computer that supports transmission of multiple bits 
+at the same time; almost exclusively used for connecting a printer. On 
+IBM or compatible computers, the parallel port uses a 25-pin connector. 
+Macintoshes have an SCSI port that is parallel, but more flexible in the
+ type of devices it can support."
+password,"A secret combination of characters used to access a secured resource 
+such as a computer, a program, a directory, or a file; often used in 
+conjunction with a username."
+pc,"Usually refers to an IBM PC or compatible, or when used generically, to a
+ ""personal computer"". In a different context, PC also is an abbreviation
+ for ""politically correct."""
+pda,"Personal Digital Assistant; a small hand-held computer that in the most 
+basic form, allows you to store names and addresses, prepare to-do 
+lists, schedule appointments, keep track of projects, track 
+expenditures, take notes, and do calculations. Depending on the model, 
+you also may be able to send or receive e-mail; do word processing; play
+ MP3 music files; get news, entertainment and stock quotes from the 
+Internet; play video games; and have an integrated digital camera or GPS
+ receiver."
+pdf,"Portable Document Format; a type of formatting that enables files to be 
+viewed on a variety computers regardless of the program originally used 
+to create them. PDF files retain the ""look and feel"" of the original 
+document with special formatting, graphics, and color intact. You use a 
+special program or print driver (Adobe Distiller or PDF Writer) to 
+convert a file into PDF format."
+peer-to-peer,"A type of connection between two computers; both perform computations, 
+store data, and make requests from each other (unlike a client-server 
+connection where one computer makes a request and the other computer 
+responds with information)."
+perl,"Practical Extraction and Report Language; a programming language that is
+ commonly used for writing CGI scripts used by most servers to process 
+data received from a client browser."
+personality,"A method of setting up a computer or a program for multiple users. 
+Example: In Windows, each user is given a separate ""personality"" and set
+ of relevant files."
+pgp,"Pretty good privacy; a technique for encrypting e-mail messages. PGP 
+uses a public key to give to anyone who sends you messages and a private
+ key you keep to decrypt messages you receive."
+ph,"A type of directory service often referred to as a ""phone book"". When 
+accessing this type of directory service, follow the directions from the
+ particular site for looking up information."
+phishing,"A con that scammers use to electronically collect personal information 
+from unsuspecting users. Phishers send e-mails that appear to come from 
+legitimate websites such as eBay, PayPal, or other banking institutions 
+asking you to click on a link included in the email and then update or 
+validate your information by entering your username and password and 
+often even more information, such as your full name, address, phone 
+number, social security number, and credit card number."
+ping,"Packet Internet Groper; a utility used to determine whether a particular
+ computer is currently connected to the Internet. It works by sending a 
+packet to the specified IP address and waiting for a reply."
+pixel,Stands for one picture element (one dot on a computer monitor); commonly used as a unit of measurement.
+plug-in,"A program used for viewing multimedia files that your web browser cannot
+ handle internally; files using a plug-in do not need to be moved to 
+your computer before being shown or played. Contrast to a helper 
+application which requires the file to first be moved to your computer. 
+Examples of plug-ins: Adobe Flash Player (for video and animation) and 
+Quicktime (for streamed files over the Internet)."
+plug and play,"A set of specifications that allows a computer to automatically detect 
+and configure a device and install the appropriate device drivers."
+pop,"Post Office Protocol; a method of handling incoming electronic mail. 
+Example: E-mail programs may use this protocol for storing your incoming
+ messages on a special cluster of servers called 
+pop.service.ohio-state.edu and delivering them when requested."
+pop-up blocker,"Any application that disables the pop-up, pop-over, or pop-under ad windows that appear when you use a web browser."
+post,The act of sending a message to a particular network newsgroup.
+postscript,"A page description language primarily used for printing documents on 
+laser printers; it is the standard for desktop publishing because it 
+takes advantage of high resolution output devices. Example: A graphic 
+design saved in PostScript format looks much better when printed on a 
+600 dpi printer than on a 300 dpi printer."
+postscript fonts,"Called outline or scalable fonts; with a single typeface definition, a 
+PostScript printer can produce many other fonts. Contrast to 
+non-PostScript printers that represent fonts with bitmaps and require a 
+complete set for each font size."
+ppp,"Point-to-Point Protocol; a type of connection over telephone lines that 
+gives you the functionality of a direct ethernet connection."
+program,A set of instructions that tells a computer how to perform a specific task.
+private cloud,"Private cloud (also called internal cloud or corporate cloud) is a term 
+for a proprietary computing architecture that provides hosted services 
+to a limited number of users behind a secure and robust infrastructure. A
+ Dataprise private cloud solution is designed to offer the same features
+ and benefits of shared cloud systems, but removes a number of 
+objections to the cloud computing model including control over 
+enterprise and customer data, worries about security, and issues 
+connected to regulatory compliance. Dataprise Private clouds"" are 
+designed to facilitate organizations that needs or wants more control 
+over their data than they can get by using a third-party shared cloud 
+service."
+protocol,"A set of rules that regulate how computers exchange information. 
+Example: error checking for file transfers or POP for handling 
+electronic mail."
+proxy,"Refers to a special kind of server that functions as an intermediate 
+link between a client application (like a web browser) and a real 
+server. The proxy server intercepts requests for information from the 
+real server and whenever possible, fills the request. When it is unable 
+to do so, the request is forwarded to the real server."
+public domain software,"Any non-copyrighted program; this software is free and can be used 
+without restriction. Often confused with ""freeware"" (free software that 
+is copyrighted by the author)."
+pull,"Frequently used to describe data sent over the Internet; the act of 
+requesting data from another computer. Example: using your web browser 
+to access a specific page. Contrast to ""push"" technology when data is 
+sent to you without a specific request being made."
+push,"Frequently used to describe data sent over the Internet; the act of 
+sending data to a client computer without the client requesting it. 
+Example: a subscriptions service that delivers customized news to your 
+desktop. Contrast to browsing the World Wide Web which is based on 
+""pull"" technology; you must request a web page before it is sent to your
+ computer."
+qos,"Quality of service; is the ability to provide different priority to 
+different applications, users, or data flows, or to guarantee a certain 
+level of performance to a data flow. For example, a required bit rate, 
+delay, jitter, packet dropping probability and/or bit error rate may be 
+guaranteed. Quality of service guarantees are important if the network 
+capacity is insufficient, especially for real-time streaming multimedia 
+applications such as voice over IP, online games and IP-TV, since these 
+often require fixed bit rate and are delay sensitive, and in networks 
+where the capacity is a limited resource, for example in cellular data 
+communication."
+quicktime,"A video format developed by Apple Computer commonly used for files found
+ on the Internet; an alternative to MPEG. A special viewer program 
+available for both IBM PC and compatibles and Macintosh computers is 
+required for playback."
+ram,"Random Access Memory; the amount of memory available for use by programs
+ on a computer. Also referred to as ""main memory"". Example: A computer 
+with 8 MB RAM has approximately 8 million bytes of memory available. 
+Contrast to ROM (read-only memory) that is used to store programs that 
+start your computer and do diagnostics."
+record,"A set of fields that contain related information; in database type 
+systems, groups of similar records are stored in files. Example: a 
+personnel file that contains employment information."
+registry,"A database used by Windows for storing configuration information. Most 
+32-bit Windows applications write data to the registry. Although you can
+ edit the registry, this is not recommended unless absolutely necessary 
+because errors could disable your computer."
+remote backup,"A remote, online, or managed backup service is a service that provides 
+users with a system for the backup and storage of computer files. 
+Dataprise remote backup solution incorporates automatic data compression
+ and secure data encryption. This means that your critical system data 
+backs up safely and efficiently. For additional peace of mind, our 
+backup service features proprietary dual tapeless backup protection, 
+including fast incremental backup to a secure on-site hard drive and a 
+second backup to our carrier-grade data center. Our remote backup 
+service is completely automated and immensely secure. You’ll never have 
+to think about the safety of your data again. To learn more please click
+ here."
+remote desktop,"A Windows feature that allows you to have access to a Windows session 
+from another computer in a different location (XP and later)."
+remote login,"An interactive connection from your desktop computer over a network or 
+telephone lines to a computer in another location (remote site)."
+remote monitoring,"See: ""network monitoring"" or click here."
+remote support,"See: ""help desk"" or click here."
+rgb,"Red, green, and blue; the primary colors that are mixed to display the 
+color of pixels on a computer monitor. Every color of emitted light can 
+be created by combining these three colors in varying levels."
+rj-45 connector,"An eight-wire connector used for connecting a computer to a local-area 
+network. May also be referred to as an Ethernet connector."
+rom,"Read Only Memory; a special type of memory used to store programs that 
+start a computer and do diagnostics. Data stored in ROM can only be read
+ and cannot be removed even when your computer is turned off. Most 
+personal computers have only a few thousand bytes of ROM. Contrast to 
+RAM (random access or main memory) which is the amount of memory 
+available for use by programs on your computer."
+router,"A device used for connecting two Local Area Networks (LANs); routers can
+ filter packets and forward them according to a specified set of 
+criteria."
+rtf,"Rich Text Format; a type of document formatting that enables special 
+characteristics like fonts and margins to be included within an ASCII 
+file. May be used when a document must be shared among users with 
+different kinds of computers (e.g., IBM PC or compatibles and 
+Macintoshes)."
+saas,"Software as a Service; a software delivery model in which software and 
+associated data are centrally hosted on the cloud. SaaS is typically 
+accessed by users using a thin client via a web browser."
+safe mode,A way of starting your Windows computer that can help you diagnose problems; access is provided only to basic files and drivers.
+san,"A storage area network (SAN) is a dedicated storage network that 
+provides access to consolidated, block level storage. SANs primarily are
+ used to make storage devices (such as disk arrays, tape libraries, and 
+optical jukeboxes) accessible to servers so that the devices appear as 
+locally attached to the operating system. A SAN typically has its own 
+network of storage devices that are generally not accessible through the
+ regular network by regular devices."
+sata,"Serial Advanced Technology Attachment or Serial ATA. An interface used 
+to connect ATA hard drives to a computer's motherboard that provides a 
+better, more efficient interface; Serial ATA is likely to replace the 
+previous standard, Parallel ATA (PATA), which has become dated."
+satellite transmission,"A method of data transmission; the sender beams data up to an orbiting 
+satellite and the satellite beams the data back down to the receiver."
+screen reader,A software program that translates text on a Web page into audio output; typically used by individuals with vision impairment.
+scroll bar,"In a graphical user interface system, the narrow rectangular bar at the 
+far right of windows or dialog boxes. Clicking on the up or down arrow 
+enables you to move up and down through a document; a movable square 
+indicates your location in the document. Certain applications also 
+feature a scroll bar along the bottom of a window that can be used to 
+move from side-to-side."
+search engine,"A tool that searches documents by keyword and returns a list of possible
+ matches; most often used in reference to programs such as Google that 
+are used by your web browser to search the Internet for a particular 
+topic."
+secure server,"A special type of file server that requires authentication (e.g., entry a valid username and password) before access is granted."
+security token,"A small device used to provide an additional level of authorization to 
+access a particular network service; the token itself may be embedded in
+ some type of object like a key fob or on a smart card. Also referred to
+ as an authentication token."
+section 508,"A 1998 amendment to the Workforce Rehabilitation Act of 1973; it states 
+after June 25, 2001, all electronic and information technology 
+developed, purchased, or used by the federal government must be 
+accessible to those with disabilities. Refer to the Section 508 website 
+for more information."
+self-extracting file,"A type of compressed file that you can execute (e.g., double-click on 
+the filename) to begin the decompression process; no other decompression
+ utility is required. Example: on IBM PC or compatibles, certain files 
+with an "".exe"" extension and on Macintoshes, all files with a "".sea"" 
+extension."
+serial port,"An interface on a computer that supports transmission of a single bit at
+ a time; can be used for connecting almost any type of external device 
+including a mouse, a modem, or a printer."
+server,"A computer that is responsible for responding to requests made by a 
+client program (e.g., a web browser or an e-mail program) or computer. 
+Also referred to as a ""file server""."
+shareware,"Copyrighted software available for downloading on a free, limited trial 
+basis; if you decide to use the software, you're expected to register 
+and pay a small fee. By doing this, you become eligible for assistance 
+and updates from the author. Contrast to public domain software which is
+ not copyrighted or to freeware which is copyrighted but requires no 
+usage fee."
+signature,"A file containing a bit of personal information that you can set to be 
+automatically appended to your outgoing e-mail messages; many network 
+newsreaders also have this capability. Large signatures over five lines 
+generally are frowned upon."
+simm,"Single In-line Memory Module; a small circuit board that can hold a 
+group of memory chips; used to increase your computer's RAM in 
+increments of 1,2, 4, or 16 MB."
+smtp,Simple Mail Transfer Protocol; a method of handling outgoing electronic mail.
+software,"Any program that performs a specific function. Examples: word processing, spreadsheet calculations, or electronic mail."
+spam,"Email spam, also known as junk email or unsolicited bulk email (UBE), is
+ a subset of spam that involves nearly identical messages sent to 
+numerous recipients by email. Definitions of spam usually include the 
+aspects that email is unsolicited and sent in bulk. Spammers collect 
+email addresses from chatrooms, websites, customer lists, newsgroups, 
+and viruses which harvest users' address books, and are sold to other 
+spammers. They also use a practice known as “email appending” or 
+""epending"" in which they use known information about their target (such 
+as a postal address) to search for the target's email address. Also see 
+""Anti-Spam""."
+ssid,Service Set Identifier; a name that identifies a wireless network.
+streaming (streaming media),"A technique for transferring data over the Internet so that a client 
+browser or plug-in can start displaying it before the entire file has 
+been received; used in conjunction with sound and pictures. Example: The
+ Flash Player plug-in from Adobe Systems gives your computer the 
+capability for streaming audio; RealPlayer is used for viewing sound and
+ video."
+spyware,"Any software that covertly gathers user information, usually for advertising purposes, through the user's Internet connection."
+subdirectory,"An area on a hard disk that contains a related set of files; on IBM PC 
+or compatibles, a level below another directory. On Macintoshes, 
+subdirectories are referred to as folders."
+support365®,"Dataprise's unique Support365™ plans offer the best solution for 
+organizations that need comprehensive IT support, that either don’t have
+ the time, skill-set or simply just don’t want the burden of managing an
+ IT person, department, or in some situations – an entire IT division. 
+By choosing Support365™ We make it easier than ever for you to 
+understand, budget, and manage your monthly IT requirements. It's 
+basically like having your own virtual IT department. To learn more 
+click here."
+svga,"Super VGA (Video Graphics Array); a set of graphics standards for a 
+computer monitor that offers greater resolution than VGA. There are 
+several different levels including 800 x 600 pixels, 1024 by 768 pixels,
+ 1280 by 1024 pixels; and 1600 by 1200 pixels. Although each supports a 
+palette of 16 million colors, the number of simultaneous colors is 
+dependent on the amount of video memory installed in the computer."
+t-1 carrier,"A dedicated phone connection supporting data rates of 1.544Mbits per 
+second; T-1 lines are a popular leased line option for businesses 
+connecting to the Internet and for Internet Service Providers connecting
+ to the Internet backbone. Sometimes referred to as a DS1 line."
+t-3 carrier,"A dedicated phone connection supporting data rates of about 43 Mbps; T-3
+ lines are used mainly by Internet Service Providers connecting to the 
+Internet backbone and for the backbone itself. Sometimes referred to as a
+ DS3 line."
+10base-t,"An adaptation of the Ethernet standard for Local Area Networks that 
+refers to running Ethernet over twisted pair wires. Students planning on
+ using ResNet from a residence hall must be certain to use an Ethernet 
+adapter that is 10Base-T compatible and not BNC (used with 10Base-2 
+Ethernet systems)."
+table,"With reference to web design, a method for formatting information on a 
+page. Use of tables and the cells within also provide a way to create 
+columns of text. Use of tables vs frames is recommended for helping to 
+make your web site ADA-compliant."
+tcp/ip,"Transmission Control Protocol/Internet Protocol; an agreed upon set of 
+rules that tells computers how to exchange information over the 
+Internet. Other Internet protocols like FTP, Gopher, and HTTP sit on top
+ of TCP/IP."
+telephony,"Telephony encompasses the general use of equipment to provide voice 
+communication over distances, specifically by connecting telephones to 
+each other. Dataprise's expert team of telecommunication consultants can
+ design and implement a system that is feature rich, simple to use and 
+integrates seamlessly with your existing business applications. To learn
+ more please click here."
+telnet,"A generic term that refers to the process of opening a remote 
+interactive login session regardless of the type of computer you're 
+connecting to."
+terminal emulation,"The act of using your desktop computer to communicate with another 
+computer like a UNIX or IBM mainframe exactly as if you were sitting in 
+front of a terminal directly connected to the system. Also refers to the
+ software used for terminal emulation. Examples: the Telnet program for 
+VT100 emulation and QWS3270 (Windows) and TN3270 (Macintosh) for IBM3270
+ fullscreen emulation."
+tiff,"Tag Image File Format; a popular file format for storing bit-mapped 
+graphic images on desktop computers. The graphic can be any resolution 
+and can be black and white, gray-scale, or color. Files of this type 
+usually have the suffix "".tif"" as part of their name."
+token,"A group of bits transferred between computers on a token-ring network. 
+Whichever computer has the token can send data to the other systems on 
+the network which ensures only one computer can send data at a time. A 
+token may also refer to a network security card, also known as a hard 
+token."
+tool bar,"On a graphical user interface system, a bar near the top of an 
+application window that provides easy access to frequently used options."
+trojan horse,"A harmless-looking program designed to trick you into thinking it is 
+something you want, but which performs harmful acts when it runs."
+truetype,"A technology for outline fonts that is built into all Windows and 
+Macintosh operating systems. Outline fonts are scalable enabling a 
+display device to generate a character at any size based on a 
+geometrical description."
+tweet,"An update of 140 characters or less published by a Twitter user meant to
+ answer the question, ""What are you doing?"" which provides other users 
+with information about you."
+twitter,"A service that allows users to stay connected with each other by posting
+ updates, or ""tweets,"" using a computer or cell phone or by viewing 
+updates posted by other users."
+twisted pair cable,"A type of cable that is typically found in telephone jacks; two wires 
+are independently insulated and are twisted around each other. The cable
+ is thinner and more flexible than the coaxial cable used in conjunction
+ with 10Base-2 or 10Base-5 standards. Most Ohio State UNITS telephone 
+jacks have three pairs of wires; one is used for the telephone and the 
+other two can be used for 10Base-T Ethernet connections."
+two-factor authentication,"An extra level of security achieved using a security token device; users
+ have a personal identification number (PIN) that identifies them as the
+ owner of a particular token. The token displays a number which is 
+entered following the PIN number to uniquely identify the owner to a 
+particular network service. The identification number for each user is 
+changed frequently, usually every few minutes."
+unix,"A popular multitasking computer system often used as a server for 
+electronic mail or for a web site. UNIX also is the leading operating 
+system for workstations, although increasingly there is competition from
+ Windows NT which offers many of the same features while running on an 
+PC or compatible computer."
+upload,The process of transferring one or more files from your local computer to a remote computer. The opposite action is download.
+usb,"Universal Serial Bus; a connector on the back of almost any new computer
+ that allows you to quickly and easily attach external devices such as 
+mice, joysticks or flight yokes, printers, scanners, modems, speakers, 
+digital cameras or webcams, or external storage devices. Current 
+operating systems for Windows and Macintosh computers support USB, so 
+it's simple to install the device drivers. When a new device is 
+connected, the operating system automatically activates it and begins 
+communicating. USB devices can be connected or disconnected at any time."
+username,A name used in conjunction with a password to gain access to a computer system or a network service.
+url,"Uniform Resource Locator; a means of identifying resources on the 
+Internet. A full URL consists of three parts: the protocol (e.g., FTP, 
+gopher, http, nntp, telnet); the server name and address; and the item's
+ path. The protocol describes the type of item and is always followed by
+ a colon (:). The server name and address identifies the computer where 
+the information is stored and is preceded by two slashes (//). The path 
+shows where an item is stored on the server and what the file is called;
+ each segment of the location s preceded by a single slash (/). 
+Examples: The URL for the Dataprise home page is 
+http://www.dataprise.com."
+usb port,An interface used for connecting a Universal Serial Bus (USB) device to computer; these ports support plug and play.
+utility,"Commonly refers to a program used for managing system resources such as 
+disk drives, printers, and other devices; utilities sometimes are 
+installed as memory-resident programs. Example: the suite of programs 
+called Norton Utilities for disk copying, backups, etc."
+uuencode,"A method of converting files into an ASCII format that can be 
+transmitted over the Internet; it is a universal protocol for 
+transferring files between different platforms like UNIX, Windows, and 
+Macintosh and is especially popular for sending e-mail attachments."
+vdi,"Virtual Desktop Infrastructure or ""VDI,"" is a desktop-centric service 
+that hosts users' desktop environments on remote servers and/or blade 
+PCs, which are accessed over a network using a remote display protocol."
+virtual classroom,"An online environment where students can have access to learning tools 
+any time. Interaction between the instructor and the class participants 
+can be via e-mail, chat, discussion group, etc."
+virtualization,"Virtualization is the creation of a virtual (rather than actual) version
+ of something, such as a hardware platform, operating system, a storage 
+device or network resources. In hardware virtualization, the term host 
+machine refers to the actual machine on which the virtualization takes 
+place; the term guest machine, however, refers to the virtual machine. 
+Likewise, the adjectives host and guest are used to help distinguish the
+ software that runs on the actual machine from the software that runs on
+ the virtual machine. The software or firmware that creates a virtual 
+machine on the host hardware is called a hypervisor or Virtual Machine 
+Monitor."
+virtual hosting,"Virtual hosting is a method for hosting multiple domain names on a 
+computer using a single IP address. This allows one machine to share its
+ resources, such as memory and processor cycles, to use its resources 
+more efficiently. Dataprise Virtual Hosting provides a high-performance 
+hosting platform for your organization's online presence. Maintained by 
+our specialist support staff and 24x7 active monitoring systems, we work
+ hard to meet all of your hosted Web server needs."
+virtual memory,"A technique that enables a certain portion of hard disk space to be used
+ as auxiliary memory so that your computer can access larger amounts of 
+data than its main memory can hold at one time."
+virtual reality,"An artificial environment created with computer hardware and software to
+ simulate the look and feel of a real environment. A user wears 
+earphones, a special pair of gloves, and goggles that create a 3D 
+display. Examples: manipulating imaginary 3D objects by ""grabbing"" them,
+ taking a tour of a ""virtual"" building, or playing an interactive game."
+virus,"A program intended to alter data on a computer in an invisible fashion, 
+usually for mischievous or destructive purposes. Viruses are often 
+transferred across the Internet as well as by infected diskettes and can
+ affect almost every type of computer. Special antivirus programs are 
+used to detect and eliminate them."
+voip,"Voice over Internet Protocol; a means of using the Internet as the 
+transmission medium for phone calls. An advantage is you do not incur 
+any additional surcharges beyond the cost of your Internet access."
+vpn,"Virtual Private Networking; a means of securely accessing resources on a
+ network by connecting to a remote access server through the Internet or
+ other network."
+vt100,"A type of terminal emulation required when you open an interactive 
+network connection (telnet) to a UNIX system from your desktop computer."
+wais,"Wide Area Information Server; a program for finding documents on the 
+Internet. Usually found on gopher servers to enable searching text-based
+ documents for a particular keyword."
+wan,"Wide Area Network; a group of networked computers covering a large geographical area (e.g., the Internet)."
+wap,Wireless Application Protocol; a set of communication protocols for enabling wireless access to the Internet.
+wep,"Wired Equivalent Privacy; a security protocol for wireless local area 
+networks defined in the 802.11b standard. WEP provides the same level of
+ security as that of a wired LAN."
+wi-fi,"Wireless Fidelity; A generic term from the Wi-Fi Alliance that refers to
+ of any type of 802.11 network (e.g., 802.11b, 802.11a, dual-band, 
+etc.). Products approved as ""Wi-Fi Certified"" (a registered trademark) 
+are certified as interoperable with each other for wireless 
+communications."
+wild card,"A special character provided by an operating system or a particular 
+program that is used to identify a group of files or directories with a 
+similar characteristic. Useful if you want to perform the same operation
+ simultaneously on more than one file. Example: the asterisk (*) that 
+can be used in DOS to specify a groups of files such as *.txt."
+window,"On a graphical user interface system, a rectangular area on a display 
+screen. Windows are particularly useful on multitasking systems which 
+allow you to perform a number of different tasks simultaneously. Each 
+task has its own window which you can click on to make it the current 
+process. Contrast to a ""dialog box"" which is used to respond to prompts 
+for input from an application."
+windows,A casual way of referring to the Microsoft Windows operating systems.
+wireless (networking),"The ability to access the Internet without a physical network 
+connection. Devices such as cell phones and PDAs that allow you to send 
+and receive e-mail use a wireless Internet connection based on a 
+protocol called WAP (Wireless Application Protocol). At this point, web 
+sites that contain wireless Internet content are limited, but will 
+multiply as the use of devices relying on WAP increases."
+wizard,"A special utility within some applications that is designed to help you 
+perform a particular task. Example: the wizard in Microsoft Word that 
+can guide you through creating a new document."
+wlan,Wireless Local Area Network; the computers and devices that make up a wireless network.
+workstation,"A graphical user interface (GUI) computer with computing power somewhere
+ between a personal computer and a minicomputer (although sometimes the 
+distinction is rather fuzzy). Workstations are useful for development 
+and for applications that require a moderate amount of computing power 
+and relatively high quality graphics capabilities."
+world wide web,"A hypertext-based system of servers on the Internet. Hypertext is data 
+that contains one or more links to other data; a link can point to many 
+different types of resources including text, graphics, sound, animated 
+files, a network newsgroup, a telnet session, an FTP session, or another
+ web server. You use a special program called a ""browser"" (e.g., Firefox
+ or Internet Explorer) for viewing World Wide Web pages. Also referred 
+to as ""WWW"" or ""the web""."
+worm,"A program that makes copies of itself and can spread outside your 
+operating system worms can damage computer data and security in much the
+ same way as viruses."
+wpa,Wi-Fi Protected Access; a standard designed to improve on the security features of WEP.
+www,An abbreviation for World Wide Web.
+wysiwyg,"What You See Is What You Get; a kind of word processor that does 
+formatting so that printed output looks identical to what appears on 
+your screen."
+x2,"A technology that enables data transmission speeds up to 56 Kbps using 
+regular telephone service that is connected to switching stations by 
+high-speed digital lines. This technology affects only transmissions 
+coming into your computer, not to data you send out. In addition, your 
+ISP must have a modem at the other end that supports X2."
+xdr,"XDR or extended detection and response is a solution that 
+integrates multiple security tools and data sources to provides extended
+ threat detection and response capabilities beyond traditional endpoint 
+products."
+xhtml,"Extensible Hypertext Markup Language. A spinoff of the hypertext markup 
+language (HTML) used for creating Web pages. It is based on the HTML 4.0
+ syntax, but has been modified to follow the guidelines of XML and is 
+sometimes referred to as HTML 5.0."
+xml,"Extensible Markup Language; A markup language for coding web documents 
+that allows designers to create their own customized tags for 
+structuring a page."
+zero-day,"zero-day (or zero-hour or day zero) attack, threat or virus is a 
+computer threat that tries to exploit computer application 
+vulnerabilities that are unknown to others or the software developer, 
+also called zero-day vulnerabilities. Zero-day exploits (actual software
+ that uses a security hole to carry out an attack) are used or shared by
+ attackers before the developer of the target software knows about the 
+vulnerability."
+zero trust network access (ztna),"Zero Trust Network Access or ZTNA is a security framework that 
+requires all users - in or outside the organization’s network - to be 
+authenticated, authorized, and continuously validated for security 
+configuration and posture before being granted or keeping access to data
+ and applications."
+zip,"A common file compression format for PC or compatibles; the utility 
+WinZip or Winrar is used for compressing and decompressing files. Zipped
+ files usually end with a "".zip"" file extension. A special kind of 
+zipped file is self-extracting and ends with a "".exe"" extension. 
+Macintosh OSX also supports the .zip format and has tools that can 
+compress and decompress zip files."
+zip drive,"A high capacity floppy disk drive from Iomega Corporation; the disks it 
+uses are a little bit larger than a conventional diskette and are 
+capable of holding 100 MB or 250 MB of data."
+zoom,The act of enlarging a portion of an onscreen image for fine detail work; most graphics programs have this capability.
