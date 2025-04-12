@@ -64,5 +64,6 @@ def test_negative_rag_request(question,expected_keywords):
     # Verify we got a response
     for keyword in expected_keywords:
         assert keyword not in response
+    assert "Unfortunately" in response
     
     print(f"\nE2E Test Response:\n{response}\n")

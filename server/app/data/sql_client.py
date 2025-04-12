@@ -6,7 +6,7 @@ from pathlib import Path
 import logging
 
 class SQLClient:
-    engine: Engine = create_engine('postgresql+psycopg://postgres:postgres@localhost:5432/jargone')
+    engine: Engine = create_engine('postgresql+psycopg://postgres:postgres@sql-server:5432/jargone')
     Base.metadata.create_all(engine)
     
     def load_jargon(self):

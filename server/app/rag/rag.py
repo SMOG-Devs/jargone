@@ -2,12 +2,15 @@ from openai import OpenAI
 import json
 from pathlib import Path
 import logging
-
+from typing import List
+from embedder import Embedder
+from data.vector import QdrantVectorDB
 logger = logging.getLogger(__name__)
 
 class Rag:
     def __init__(self, api_key: str, model: str = "gpt-4o-mini", max_tokens: int = 800, 
-                 system_prompt: str = None, context_path: str = "server/app/rag/context.json"):
+                 system_prompt: str = None, context_path: str = "server/app/rag/context.json",
+                 embedder_model: str = "text-embedding-3-small", embedder_dimension: int = 1536):
         """Initialize the OpenAI connector.
         
         Args:
@@ -17,6 +20,7 @@ class Rag:
             system_prompt (str): System prompt to use for the model
         """
         self.client = OpenAI(api_key=api_key)
+        self.api_key = api_key
         self.model = model
         self.max_tokens = max_tokens
         self.context = self._load_context(context_path)
@@ -26,7 +30,8 @@ class Rag:
         if system_prompt:
             self.system_prompt = system_prompt
         else:
-            self.system_prompt = "You are a helpful assistant that explains technical terms and concepts. Please explain the following request sentences using only the context provided below. If the context doesn't contain enough information, please say so."
+            self.system_prompt = "You are a helpful assistant that explains technical terms and concepts. Please explain the following request sentences using only the context provided below. If the context doesn't contain enough information, please say so. If you cannot find an answer, start response with \"Unfortunately\""
+        self.qdrant_db = QdrantVectorDB(collection_name="documents", host="vector-server", port=6333, embedding_dim=embedder_dimension)
         
     def _load_context(self, context_path: str) -> str:
         """Load context from the context.json file."""
@@ -89,6 +94,34 @@ class Rag:
         """
         prompt = self.get_prompt(request)
         return self.get_completion(prompt)
+    
+    def _embed_request(self, request: str) -> List[float]:
+        """Embed a request using the OpenAI model.
+        
+        Args:
+            request (str): The user's request
+
+        Returns:
+            list: Embedding of the request
+        """
+        embedder = Embedder(self.api_key)
+        return embedder.embed_text(request)
+    
+    def _search_context(self, request: str) -> List[str]:
+        """Search the context for the most relevant information.
+        
+        Args:
+            request (str): The user's request
+
+        Returns:
+            list: List of relevant context
+        """
+        # Embed the request
+        request_embedding = self._embed_request(request)
+        # Search the context
+        results = self.qdrant_db.search(request_embedding)
+        return results
+    
 
 # Example usage:
 if __name__ == "__main__":
