@@ -6,7 +6,7 @@ from pathlib import Path
 import logging
 
 class SQLClient:
-    engine: Engine = create_engine('postgresql+psycopg://postgres:postgres@sql-server:5432/jargone')
+    engine: Engine = create_engine('postgresql+psycopg://postgres:postgres@localhost:5432/jargone')
     Base.metadata.create_all(engine)
     
     def load_jargon(self):
@@ -29,3 +29,7 @@ class SQLClient:
             session.commit()
             logging.info(f'Upload Done')
             
+    def search_word(self, word: str) -> str:
+        with self.engine.connect() as con:
+            rs = con.execute(f"""SELECT name, detailed_explanation FROM entities WHERE levenshtein('{word.lower()}',name) < 2""")
+            print(rs)
