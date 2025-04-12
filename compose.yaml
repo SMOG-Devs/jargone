@@ -17,7 +17,7 @@ services:
     container_name: qdrant
     volumes:
       - ./qdrant/qdrant_data:/qdrant/storage
-      - ./gradnt/qdrant_snapshots/:/snapshots
+      - ./qdrant/qdrant_snapshots/:/snapshots
     environment:
       QDRANT__STORAGE__SNAPSHOT_PATH: /snapshots
       QDRANT__TELEMETRY_DISABLED: 'true'
