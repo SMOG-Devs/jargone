@@ -44,8 +44,7 @@ class Rag:
         
         Args:
             request (str): The user's request
-            text_context (List[str], optional): Additional context to include
-            
+
         Returns:
             str: Formatted prompt
         """
@@ -84,8 +83,7 @@ class Rag:
         
         Args:
             request (str): The user's request
-            text_context (List[str], optional): Additional context to include
-            
+
         Returns:
             str: Model's response
         """
