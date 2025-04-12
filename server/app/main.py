@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
         raise ValueError("OPENAI_API_KEY environment variable is not set")
     
     # Load the ML model
-    rag = Rag(api_key=api_key, context_path="server/app/rag/context.json")
+    rag = Rag(api_key=api_key, context_path="app/rag/context.json")
     logger.info("RAG service initialized successfully")
 
     yield
