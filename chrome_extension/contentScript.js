@@ -50,7 +50,6 @@
     const { type, value, videoId } = obj;
 
     if (type === "NEW") {
-      console.log(videoId);
       currentVideo = videoId;
       newVideoLoaded();
     } else if (type === "PLAY") {
@@ -60,7 +59,6 @@
       chrome.storage.sync.set({ [currentVideo]: JSON.stringify(currentVideoBookmarks) });
       response(currentVideoBookmarks);
     } else if (type === "CONTEXT_ADD_BOOKMARK") {
-      console.log(videoId);
       currentVideo = videoId;
       newVideoLoaded();
     }
