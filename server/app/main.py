@@ -28,8 +28,10 @@ rag = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    from dotenv import load_dotenv
     global rag
 
+    load_dotenv()
     # Get API key from environment variable
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:

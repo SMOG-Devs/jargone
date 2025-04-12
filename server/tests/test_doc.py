@@ -1,5 +1,5 @@
 import pytest
-from app.ingestion.doc import Document, MAX_CHUNK_SIZE, MAX_CHUNK_OVERLAP
+from app.ingestion.doc import Document, DOC_MAX_CHUNK_SIZE, DOC_CHUNK_OVERLAP
 from app.data.vector import DocumentChunk
 
 class TestDocumentChunking:
@@ -30,7 +30,7 @@ class TestDocumentChunking:
         # Use a pattern that makes it easy to verify the chunks
         chunk_marker = "CHUNK_MARKER_"
         # Create content that's more than 2.5 chunks long to ensure we get at least 3 chunks
-        content_size = int(2.5 * MAX_CHUNK_SIZE)
+        content_size = int(2.5 * DOC_MAX_CHUNK_SIZE)
         large_content = "X" * content_size
         
         # Insert markers at specific positions to verify overlap
@@ -39,7 +39,7 @@ class TestDocumentChunking:
         marker_positions = []
         
         # Insert some markers near chunk boundaries to test overlap
-        for i in range(0, content_size, MAX_CHUNK_SIZE - MAX_CHUNK_OVERLAP - 100):
+        for i in range(0, content_size, DOC_MAX_CHUNK_SIZE - DOC_CHUNK_OVERLAP - 100):
             if i < content_size:
                 position = i
                 marker = f"{chunk_marker}{i}"
@@ -55,15 +55,15 @@ class TestDocumentChunking:
         
         # Verify that all chunks except the last one have the maximum size
         for i in range(len(chunks) - 1):
-            assert len(chunks[i].text) == MAX_CHUNK_SIZE
+            assert len(chunks[i].text) == DOC_MAX_CHUNK_SIZE
         
         # Verify chunk overlap - each marker should appear in the correct chunks
         for position, marker in marker_positions:
             # Calculate which chunks should contain this marker
             chunk_indices = []
             for i in range(len(chunks)):
-                chunk_start = i * (MAX_CHUNK_SIZE - MAX_CHUNK_OVERLAP)
-                chunk_end = chunk_start + MAX_CHUNK_SIZE
+                chunk_start = i * (DOC_MAX_CHUNK_SIZE - DOC_CHUNK_OVERLAP)
+                chunk_end = chunk_start + DOC_MAX_CHUNK_SIZE
                 if chunk_start <= position < chunk_end:
                     chunk_indices.append(i)
             
