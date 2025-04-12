@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import List
 from contextlib import asynccontextmanager
 
-from app.rag.mock_rag import MockRAGService
+from rag.mock_rag import MockRAGService
 
 class TextRequest(BaseModel):
     text: str

@@ -22,4 +22,4 @@ COPY --from=build /app/.venv ./.venv
 
 EXPOSE 8000
 
-CMD ["/bin/bash","./run.sh"]
+CMD ["./app/run.sh"]
