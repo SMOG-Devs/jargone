@@ -7,6 +7,7 @@ from data.sql_client import SQLClient
 import os
 import logging
 from traceback import print_exc
+from ner.NamedEntityExtraction import EntityRecognition
 
 from rag.rag import Rag
 
@@ -43,7 +44,7 @@ async def lifespan(app: FastAPI):
     # Load the ML model
     rag['sql_client'] = SQLClient()
     rag['sql_client'].load_jargon()
-    print(rag['sql_client'].search_word('addres'))
+    rag['ner'] = EntityRecognition()
     rag['rag'] = Rag(api_key=api_key, context_path="app/rag/context.json")
     logger.info("RAG service initialized successfully")
 
@@ -67,6 +68,7 @@ app.add_middleware(
 @app.post("/explain", response_model=ExplanationResponse)
 async def explain_text(request: TextRequest):
     entities: SQLClient = rag['sql_client']
+    ner_recognition: EntityRecognition = rag['ner']
     try:
         rag_results = rag.process_request(request.text)
     except Exception as e:
@@ -75,7 +77,8 @@ async def explain_text(request: TextRequest):
         raise HTTPException(status_code=500, detail=str(e))
     
     try: 
-        ents = entities.search_word(request.text)
+        ents = ner_recognition.extract_named_entities(request.text)
+        ents = [entities.search_word(ent.text) for ent in ents]
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
         print_exc()
