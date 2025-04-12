@@ -34,8 +34,10 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "jargone"
     volumes:
-      - ./postgres/pgdata:/var/lib/postgresql/data
+      - psql_data:/var/lib/postgresql/data
     networks:
       - net
       
@@ -43,3 +45,7 @@ services:
 networks:
   net:
     driver: bridge
+
+volumes:
+  psql_data:
+    driver: local

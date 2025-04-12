@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from contextlib import asynccontextmanager
+from data.sql_client import SQLClient
 
 from rag.mock_rag import MockRAGService
 
@@ -26,6 +27,7 @@ async def lifespan(app: FastAPI):
 
     # Load the ML model
     rag = MockRAGService()
+    rag['sql_client'] = SQLClient()
 
     yield
     # Clean up the ML models and release the resources

@@ -19,6 +19,8 @@ dependencies = [
     "qdrant-client>=1.13.3",
     "uvicorn>=0.30.0",
     "spacy-download>=1.1.0",
+    "psycopg>=3.2.6",
+    "pandas>=2.2.3",
 ]
 
 [tool.pytest.ini_options]
