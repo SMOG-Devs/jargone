@@ -5,5 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.115.12",
+    "pydantic>=2.11.3",
+    "pytest>=8.3.5",
+    "spacy>=3.8.5",
+    "spacy-download>=1.1.0",
     "sqlalchemy>=2.0.0",
 ]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"

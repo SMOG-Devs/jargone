@@ -1,0 +1,45 @@
+services:   
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    volumes:
+      - ./server:/server
+    ports:
+      - 8000:8000
+    tty: true
+    networks:
+      - net
+
+  vector-server:
+    image: qdrant/qdrant
+    container_name: qdrant
+    volumes:
+      - ./qdrant/qdrant_data:/qdrant/storage
+      - ./gradnt/qdrant_snapshots/:/snapshots
+    environment:
+      QDRANT__STORAGE__SNAPSHOT_PATH: /snapshots
+      QDRANT__TELEMETRY_DISABLED: 'true'
+    ports:
+      - 6333:6333
+    networks:
+      - net
+
+  sql-server:
+    image: postgres
+    container_name: mysql
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./postgres/pgdata:/var/lib/postgresql/data
+    networks:
+      - net
+      
+
+networks:
+  net:
+    driver: bridge
