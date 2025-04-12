@@ -1,10 +1,18 @@
-<link href="popup.css" rel="stylesheet" type="text/css" />
-<script type="module" src="popup.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select-gpt</title>
 
-<div class="container">
-  <div>
-    <div class="title">Your bookmarks for this video</div>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>select-gpt</h1>
+    <div class="editable" contenteditable="false" id="input" placeholder="Loading..."></div><br/>
+    <div class="editable" contenteditable="false" id="output"></div>
 
-    <div class="bookmarks" id="bookmarks"></div>
-  </div>
-</div>
+    <script src="./popup.js"></script>
+</body>
+</html>

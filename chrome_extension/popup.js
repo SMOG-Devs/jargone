@@ -1,92 +1,70 @@
-import { getActiveTabURL } from "./utils.js";
-
-const addNewBookmark = (bookmarks, bookmark) => {
-  const bookmarkTitleElement = document.createElement("div");
-  const controlsElement = document.createElement("div");
-  const newBookmarkElement = document.createElement("div");
-
-  bookmarkTitleElement.textContent = bookmark.desc;
-  bookmarkTitleElement.className = "bookmark-title";
-  controlsElement.className = "bookmark-controls";
-
-  setBookmarkAttributes("play", onPlay, controlsElement);
-  setBookmarkAttributes("delete", onDelete, controlsElement);
-
-  newBookmarkElement.id = "bookmark-" + bookmark.time;
-  newBookmarkElement.className = "bookmark";
-  newBookmarkElement.setAttribute("timestamp", bookmark.time);
-
-  newBookmarkElement.appendChild(bookmarkTitleElement);
-  newBookmarkElement.appendChild(controlsElement);
-  bookmarks.appendChild(newBookmarkElement);
-};
-
-const viewBookmarks = (currentBookmarks=[]) => {
-  const bookmarksElement = document.getElementById("bookmarks");
-  bookmarksElement.innerHTML = "";
-
-  if (currentBookmarks.length > 0) {
-    for (let i = 0; i < currentBookmarks.length; i++) {
-      const bookmark = currentBookmarks[i];
-      addNewBookmark(bookmarksElement, bookmark);
-    }
-  } else {
-    bookmarksElement.innerHTML = '<i class="row">No bookmarks to show</i>';
-  }
-
-  return;
-};
-
-const onPlay = async e => {
-  const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const activeTab = await getActiveTabURL();
-
-  chrome.tabs.sendMessage(activeTab.id, {
-    type: "PLAY",
-    value: bookmarkTime,
-  });
-};
-
-const onDelete = async e => {
-  const activeTab = await getActiveTabURL();
-  const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const bookmarkElementToDelete = document.getElementById(
-    "bookmark-" + bookmarkTime
-  );
-
-  bookmarkElementToDelete.parentNode.removeChild(bookmarkElementToDelete);
-
-  chrome.tabs.sendMessage(activeTab.id, {
-    type: "DELETE",
-    value: bookmarkTime,
-  }, viewBookmarks);
-};
-
-const setBookmarkAttributes =  (src, eventListener, controlParentElement) => {
-  const controlElement = document.createElement("img");
-
-  controlElement.src = "assets/" + src + ".png";
-  controlElement.title = src;
-  controlElement.addEventListener("click", eventListener);
-  controlParentElement.appendChild(controlElement);
-};
-
 document.addEventListener("DOMContentLoaded", async () => {
-  const activeTab = await getActiveTabURL();
-  const queryParameters = activeTab.url.split("?")[1];
-  const urlParameters = new URLSearchParams(queryParameters);
 
-  const currentVideo = urlParameters.get("v");
+    const sleep = ms => new Promise(r => setTimeout(r, ms))
 
-  if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
-    chrome.storage.sync.get([currentVideo], (data) => {
-      const currentVideoBookmarks = data[currentVideo] ? JSON.parse(data[currentVideo]) : [];
+    const getActiveTab = async () => {
+        const tabs = await chrome.tabs.query({
+            currentWindow: true,
+            active: true
+        })
+        return tabs[0]
+    }
 
-      viewBookmarks(currentVideoBookmarks);
-    });
-  } else {
-    const container = document.getElementsByClassName("container")[0];
+    const showPopup = async (answer) => {
+        if (answer !== "CLOUDFLARE" && answer !== "ERROR") {
+            try {
+                let res = await answer.split("data:")
+                try {
+                    const detail = JSON.parse(res[0]).detail
+                    document.getElementById('output').style.opacity = 1
+                    document.getElementById('output').innerHTML = detail
+                    return;
+                } catch (e) {
+                    try {
+                        res = res[1].trim()
+                        if (res === "[DONE]") return
+                        answer = JSON.parse(res)
+                        let final = answer.message.content.parts[0]
+                        final = final.replace(/\n/g,'<br>')
+                        document.getElementById('output').style.opacity = 1
+                        document.getElementById('output').innerHTML = final
+                    } catch (e) {}
+                }
+            } catch (e) {
+                document.getElementById('output').style.opacity = 1
+                document.getElementById('output').innerHTML = "Something went wrong. Please try in a few minutes."
+            }
 
-    container.innerHTML = '<div class="title">This is not a youtube video page.</div>';
-  }
-});
+        } else if (answer === "CLOUDFLARE") {
+            document.getElementById('input').style.opacity = 1
+            document.getElementById('input').innerHTML = 'You need to once visit <a target="_blank" href="https://chat.openai.com/chat">chat.openai.com</a> and check if the connection is secure. Redirecting...'
+            await sleep(3000)
+            chrome.tabs.create({url: "https://chat.openai.com/chat"})
+        } else {
+            document.getElementById('output').style.opacity = 1
+            document.getElementById('output').innerHTML = 'Something went wrong. Are you logged in to <a target="_blank" href="https://chat.openai.com/chat">chat.openai.com</a>? Try logging out and logging in again.'
+        }
+    }
+
+    const getData = async (selection) => {
+        if (!selection.length == 0) {
+            document.getElementById('input').style.opacity = 1
+            document.getElementById('input').innerHTML = selection
+            document.getElementById('output').style.opacity = 0.5
+            document.getElementById('output').innerHTML = "Loading..."
+            const port = chrome.runtime.connect();
+            port.postMessage({question: selection})
+            port.onMessage.addListener((msg) => showPopup(msg))
+        } else {
+            document.getElementById('input').style.opacity = 0.5
+            document.getElementById('input').innerHTML = "You have to first select some text"
+        }
+    }
+
+    const getSelectedText = async () => {
+        const activeTab = await getActiveTab()
+        chrome.tabs.sendMessage(activeTab.id, {type: "LOAD"}, getData)
+    }
+
+    getSelectedText()
+})
