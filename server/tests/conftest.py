@@ -15,7 +15,7 @@ def setup_test_environment():
     old_environ = dict(os.environ)
     
     # Set test environment variables
-    os.environ["OPENAI_API_KEY"] = "test_api_key"
+    os.environ["OPENAI_API_KEY"] = "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"
     os.environ["DATABASE_URL"] = "sqlite:///:memory:"
     os.environ["SPACY_MODEL"] = "en_core_web_sm"
     

@@ -1,0 +1,104 @@
+{
+    "context": [
+      {
+        "chunk_id": "tree_doc_001_001",
+        "content": "A tree is a perennial plant with an elongated stem or trunk supporting branches and leaves in most species. Trees are an essential component of the terrestrial ecosystem and play a crucial role in absorbing carbon dioxide.",
+        "metadata": {
+          "source": "Encyclopedia Britannica",
+          "title": "Tree - Plant",
+          "url": "https://www.britannica.com/plant/tree",
+          "author": "Britannica Editors",
+          "published": "2022-08-12"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_001_002",
+        "content": "The term 'tree' is not a taxonomic group but rather a structural form found in various plant families. Trees evolved independently in different clades including angiosperms, gymnosperms, and pteridophytes.",
+        "metadata": {
+          "source": "Encyclopedia Britannica",
+          "title": "Tree - Evolution",
+          "url": "https://www.britannica.com/plant/tree",
+          "author": "Britannica Editors",
+          "published": "2022-08-12"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_002_001",
+        "content": "Oak trees belong to the genus Quercus, comprising over 600 species of deciduous and evergreen trees. They are native to the Northern Hemisphere and are known for their strength and longevity.",
+        "metadata": {
+          "source": "US Forest Service",
+          "title": "Oak Trees",
+          "url": "https://www.fs.usda.gov/oak-trees",
+          "author": "Forest Service Botanists",
+          "published": "2023-04-05"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_002_002",
+        "content": "Many oak species produce acorns that serve as a food source for wildlife. They have lobed leaves and grow best in well-drained soil with full sunlight.",
+        "metadata": {
+          "source": "US Forest Service",
+          "title": "Oak Trees",
+          "url": "https://www.fs.usda.gov/oak-trees",
+          "author": "Forest Service Botanists",
+          "published": "2023-04-05"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_003_001",
+        "content": "The Amazon rainforest contains more tree species than any other biome. It includes over 16,000 species, with a few dominating the canopy and biomass.",
+        "metadata": {
+          "source": "Nature",
+          "title": "Amazon Tree Diversity",
+          "url": "https://www.nature.com/articles/amazon-trees",
+          "author": "Smith et al.",
+          "published": "2021-10-17"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_004_001",
+        "content": "Photosynthesis in trees is critical to carbon cycling. Trees absorb carbon dioxide and convert it to oxygen through chlorophyll-driven reactions in the leaves.",
+        "metadata": {
+          "source": "Plant Biology Textbook",
+          "title": "Photosynthesis in Trees",
+          "url": "https://plantbio.example.edu/ch6",
+          "author": "Dr. Helena Cruz",
+          "published": "2019-03-30"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_004_002",
+        "content": "Different species have adapted leaf shapes and arrangements to optimize sunlight capture in varying environments, from dense forests to open plains.",
+        "metadata": {
+          "source": "Plant Biology Textbook",
+          "title": "Photosynthesis in Trees",
+          "url": "https://plantbio.example.edu/ch6",
+          "author": "Dr. Helena Cruz",
+          "published": "2019-03-30"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_005_001",
+        "content": "The Baobab tree is known for its massive trunk, which stores water during droughts. Native to Africa, Madagascar, and Australia, baobabs can live over 1,000 years.",
+        "metadata": {
+          "source": "National Geographic",
+          "title": "Baobab Trees",
+          "url": "https://www.nationalgeographic.com/trees/baobab",
+          "author": "NatGeo Staff",
+          "published": "2020-06-21"
+        }
+      },
+      {
+        "chunk_id": "tree_doc_005_002",
+        "content": "Baobab fruits are rich in vitamin C and antioxidants. The tree is culturally significant and appears in folklore and traditional medicine.",
+        "metadata": {
+          "source": "National Geographic",
+          "title": "Baobab Trees",
+          "url": "https://www.nationalgeographic.com/trees/baobab",
+          "author": "NatGeo Staff",
+          "published": "2020-06-21"
+        }
+      }
+    ]
+  }
+  
