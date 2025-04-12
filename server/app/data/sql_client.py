@@ -24,12 +24,12 @@ class SQLClient:
                         Entity(name=record['Entity'],detailed_explanation=record['Decription'])
                     )
 
-            logging.info(f'Created: {len(ents_)} entites')
-            session.add_all(ents_)
-            session.commit()
-            logging.info(f'Upload Done')
+                logging.info(f'Created: {len(ents_)} entites')
+                session.add_all(ents_)
+                session.commit()
+                logging.info(f'Upload Done')
             
     def search_word(self, word: str) -> str:
         with self.engine.connect() as con:
-            rs = con.execute(f"""SELECT name, detailed_explanation FROM entities WHERE levenshtein('{word.lower()}',name) < 2""")
+            rs = con.execute(f"SELECT name, detailed_explanation FROM entities WHERE levenshtein('{word.lower()}',name) < 2")
             print(rs)
