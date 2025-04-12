@@ -3,8 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from contextlib import asynccontextmanager
+import os
+import logging
 
-from rag.mock_rag import MockRAGService
+from rag.rag import Rag
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class TextRequest(BaseModel):
     text: str
@@ -24,13 +30,18 @@ rag = {}
 async def lifespan(app: FastAPI):
     global rag
 
+    # Get API key from environment variable
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        logger.error("OPENAI_API_KEY environment variable is not set")
+        raise ValueError("OPENAI_API_KEY environment variable is not set")
+    
     # Load the ML model
-    rag = MockRAGService()
+    rag = Rag(api_key=api_key, context_path="server/app/rag/context.json")
+    logger.info("RAG service initialized successfully")
 
     yield
-    # Clean up the ML models and release the resources
-    rag.clear()
-
+    logger.info("Shutting down RAG service")
 
 
 """Create and configure the FastAPI application."""
@@ -49,14 +60,14 @@ app.add_middleware(
 @app.post("/explain", response_model=ExplanationResponse)
 async def explain_text(request: TextRequest):
     try:
-        rag_results = rag.process_query(request.text)
-        
+        rag_results = rag.process_request(request.text)
         
         return ExplanationResponse(
-            explanation="test explanation",
-            definitions=rag_results["entities"]
+            explanation=rag_results,
+            definitions=[Entity(entity="tmp entity", definition="tmp definition")]
         )
     except Exception as e:
+        logger.error(f"Error explaining text: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
- 
+    

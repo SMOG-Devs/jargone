@@ -1,0 +1,93 @@
+{
+    "context": [
+      {
+        "chunk_id": "doc_001_001",
+        "content": "In computer science, a hash function is any function that can be used to map data of arbitrary size to fixed-size values. The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.",
+        "metadata": {
+          "source": "Wikipedia",
+          "title": "Hash function",
+          "url": "https://en.wikipedia.org/wiki/Hash_function",
+          "author": "Wikipedia Contributors",
+          "published": "2023-12-20"
+        }
+      },
+      {
+        "chunk_id": "doc_001_002",
+        "content": "Hash functions are used in many applications including hash tables, data integrity verification, and cryptography. Cryptographic hash functions must fulfill additional security requirements.",
+        "metadata": {
+          "source": "Wikipedia",
+          "title": "Hash function",
+          "url": "https://en.wikipedia.org/wiki/Hash_function",
+          "author": "Wikipedia Contributors",
+          "published": "2023-12-20"
+        }
+      },
+      {
+        "chunk_id": "doc_002_001",
+        "content": "A neural network is a series of algorithms that attempts to recognize underlying relationships in a set of data through a process that mimics the way the human brain operates.",
+        "metadata": {
+          "source": "DeepLearning.ai Blog",
+          "title": "Understanding Neural Networks",
+          "url": "https://www.deeplearning.ai/blog/understanding-neural-networks",
+          "author": "Andrew Ng",
+          "published": "2022-06-15"
+        }
+      },
+      {
+        "chunk_id": "doc_002_002",
+        "content": "The architecture of a neural network includes layers of nodes, each resembling a neuron, with each node connected to several others in the adjacent layers.",
+        "metadata": {
+          "source": "DeepLearning.ai Blog",
+          "title": "Understanding Neural Networks",
+          "url": "https://www.deeplearning.ai/blog/understanding-neural-networks",
+          "author": "Andrew Ng",
+          "published": "2022-06-15"
+        }
+      },
+      {
+        "chunk_id": "doc_003_001",
+        "content": "JSON, or JavaScript Object Notation, is a lightweight data-interchange format. It is easy for humans to read and write, and easy for machines to parse and generate.",
+        "metadata": {
+          "source": "Mozilla Developer Network",
+          "title": "Working with JSON",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON",
+          "author": "MDN Contributors",
+          "published": "2024-01-10"
+        }
+      },
+      {
+        "chunk_id": "doc_003_002",
+        "content": "JSON is built on two structures: a collection of name/value pairs and an ordered list of values. These are realized as objects and arrays in most programming languages.",
+        "metadata": {
+          "source": "Mozilla Developer Network",
+          "title": "Working with JSON",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON",
+          "author": "MDN Contributors",
+          "published": "2024-01-10"
+        }
+      },
+      {
+        "chunk_id": "doc_004_001",
+        "content": "Retrieval-Augmented Generation (RAG) is a method of combining traditional information retrieval systems with generative models. It improves factual accuracy by grounding responses in external knowledge.",
+        "metadata": {
+          "source": "OpenAI Docs",
+          "title": "How RAG Works",
+          "url": "https://openai.com/docs/guides/rag",
+          "author": "OpenAI",
+          "published": "2024-11-01"
+        }
+      },
+      {
+        "chunk_id": "doc_004_002",
+        "content": "In RAG, retrieved documents or document chunks are concatenated with the user's query and passed into a language model. This allows the model to condition its output on retrieved facts.",
+        "metadata": {
+          "source": "OpenAI Docs",
+          "title": "How RAG Works",
+          "url": "https://openai.com/docs/guides/rag",
+          "author": "OpenAI",
+          "published": "2024-11-01"
+        }
+      }
+    ]
+  }
+  
