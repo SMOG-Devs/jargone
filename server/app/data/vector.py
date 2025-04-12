@@ -110,26 +110,20 @@ class QdrantVectorDB:
         
         return doc_id
     
-    def add_documents(self, documents: List[DocumentChunk], embeddings: Optional[List[List[float]]] = None) -> List[str]:
+    def add_documents(self, documents: List[DocumentChunk]) -> List[str]:
         """
         Add documents to the vector database.
         
         Args:
             documents: List of document chunks to add
-            embeddings: Optional list of embeddings for each document.
-                       If not provided, will use the embedding field from each document.
             
         Returns:
             List of document IDs
         """
-        if embeddings and len(documents) != len(embeddings):
-            raise ValueError("Number of documents and embeddings must match")
-        
         points = []
         for i, doc in enumerate(documents):
-            # Use provided embeddings or document's own embedding
-            embedding = embeddings[i] if embeddings else doc.embedding
-            if embedding is None:
+            # Use document's own embedding
+            if doc.embedding is None:
                 raise ValueError(f"Document {i} has no embedding")
             
             # Use document ID if provided, otherwise generate one
@@ -138,7 +132,7 @@ class QdrantVectorDB:
             points.append(
                 models.PointStruct(
                     id=doc_id,
-                    vector=embedding,
+                    vector=doc.embedding,
                     payload={
                         "text": doc.text,
                         "source_name": doc.source_name,
