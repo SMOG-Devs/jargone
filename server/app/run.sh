@@ -1,0 +1,1 @@
+fastapi run server/app/main.py
