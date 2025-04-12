@@ -7,5 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.12",
     "sqlalchemy>=2.0.0",
-    "fastapi[standard]"
+    "fastapi[standard]",
+    "pytest>=8.3.5",
+    "openai>=1.73.0",
 ]
