@@ -1,0 +1,54 @@
+version: "3.9"
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/16"
+          gateway: "172.20.0.1"
+
+services:   
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    volumes:
+      - ./server:/server
+    ports:
+      - 8000:8000
+    networks:
+      net:
+        ipv4_address: 172.20.0.3
+    tty: true
+  vector-server:
+    image: qdrant/qdrant
+    container_name: qdrant
+    volumes:
+      - ./qdrant/qdrant_data:/qdrant/storage
+      - ./gradnt/qdrant_snapshots/:/snapshots
+    environment:
+      QDRANT__STORAGE__SNAPSHOT_PATH: /snapshots
+      QDRANT__TELEMETRY_DISABLED: 'true'
+    ports:
+      - 6333:6333
+    networks:
+      net:
+        ipv4_address: 172.20.0.2
+  sql-server:
+    image: postgres
+    container_name: mysql
+    ports:
+      - 5432:5432
+    networks:
+      net:
+        ipv4_address: 172.20.0.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./postgres/pgdata:/var/lib/postgresql/data
+        
+    
