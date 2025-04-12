@@ -173,3 +173,4 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 ./server/uv.lock
+/qdrant/qdrant_data
