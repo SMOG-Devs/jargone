@@ -13,14 +13,15 @@ dependencies = [
     "sqlalchemy>=2.0.0",
     "fastapi[standard]",
     "pytest>=8.3.5",
-    "tiktoken>=0.9.0",
     "openai>=1.73.0",
-    "spacy>=3.8.5",
+    "tiktoken>=0.9.0",
     "qdrant-client>=1.13.3",
     "uvicorn>=0.30.0",
     "spacy-download>=1.1.0",
     "psycopg>=3.2.6",
     "pandas>=2.2.3",
+    "pip>=25.0.1",
+    "python-dotenv>=1.0.0",
 ]
 
 [tool.pytest.ini_options]

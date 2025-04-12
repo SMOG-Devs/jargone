@@ -8,8 +8,3 @@ Steps:
 
 OpenAI API is used to generate the embeddings.In the final product on-premise LLM will be used to ensure the privacy of the data.
 """
-
-
-
-
-
