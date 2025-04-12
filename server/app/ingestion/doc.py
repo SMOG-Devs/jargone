@@ -18,12 +18,13 @@ class Document():
         chunks = []
         for i in range(0, len(self.content), MAX_CHUNK_SIZE - MAX_CHUNK_OVERLAP):
             chunk = self.content[i:i+MAX_CHUNK_SIZE]
+            named_entities = [entity.text for entity in ner.extract_named_entities(chunk)]
             chunks.append(
                 DocumentChunk(
                     text=chunk, 
                     source_name=self.source_name, 
                     token_count=len(chunk), 
-                    named_entities=ner.extract_named_entities(chunk),
+                    named_entities=named_entities,
                     metadata={}
                 )
             )
