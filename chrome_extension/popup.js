@@ -302,6 +302,54 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
         `;
         outputElement.style.opacity = 1;
+        
+        // Scroll to make the loading animation visible
+        scrollToElement(outputElement);
+    };
+
+    // Scroll to an element smoothly with a slight delay to ensure animation starts
+    const scrollToElement = (element) => {
+        // Short delay to ensure the DOM has updated
+        setTimeout(() => {
+            // Get the main container that has the scrollbar
+            const mainContainer = document.querySelector('main');
+            
+            if (mainContainer && element) {
+                // Get the output container for more precise scrolling
+                const outputContainer = document.querySelector('.output-container');
+                
+                if (outputContainer) {
+                    // Calculate the scroll position to show the output area at the top
+                    const outputContainerTop = outputContainer.getBoundingClientRect().top;
+                    const mainContainerTop = mainContainer.getBoundingClientRect().top;
+                    const scrollTop = outputContainerTop - mainContainerTop + mainContainer.scrollTop - 20; // 20px buffer
+                    
+                    // Scroll smoothly to the element
+                    mainContainer.scrollTo({
+                        top: scrollTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    console.log("Scrolled to position:", scrollTop);
+                } else {
+                    // Fallback to the original calculation
+                    const elementRect = element.getBoundingClientRect();
+                    const containerRect = mainContainer.getBoundingClientRect();
+                    
+                    // Calculate the scroll position to center the element
+                    const scrollTop = elementRect.top - containerRect.top - 
+                                    (containerRect.height / 3); // Show in the upper third
+                    
+                    // Scroll smoothly to the element
+                    mainContainer.scrollTo({
+                        top: mainContainer.scrollTop + scrollTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    console.log("Fallback scroll to position:", mainContainer.scrollTop + scrollTop);
+                }
+            }
+        }, 100); // Short delay for DOM updates
     };
 
     // Hide loading animation
@@ -405,6 +453,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const showPopup = async (answer, selectedText, department, additionalContext) => {
         console.log("showPopup called with:", { answer, selectedText, department, additionalContext });
         let explanationContent = "";
+        const outputElement = document.getElementById('output');
         
         if (answer !== "CLOUDFLARE" && !answer.startsWith("ERROR")) {
             try {
@@ -429,9 +478,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                         output += `</ul></div>`;
                     }
                     
-                    document.getElementById('output').style.opacity = 1;
-                    document.getElementById('output').innerHTML = output;
+                    outputElement.innerHTML = output;
+                    outputElement.style.opacity = 1;
                     explanationContent = output;
+                    
+                    // Scroll to the output area
+                    scrollToElement(outputElement);
                     
                     // Save to history
                     await historyManager.addToHistory(selectedText, explanationContent, department, additionalContext);
@@ -440,9 +492,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             } catch (e) {
                 console.error("JSON parse error:", e);
-                document.getElementById('output').style.opacity = 1;
-                document.getElementById('output').innerHTML = `Error parsing response: ${e.message}<br><br>Raw response: ${answer}`;
+                outputElement.innerHTML = `Error parsing response: ${e.message}<br><br>Raw response: ${answer}`;
+                outputElement.style.opacity = 1;
                 explanationContent = `Error parsing response: ${e.message}`;
+                
+                // Scroll to the error message
+                scrollToElement(outputElement);
             }
         } else if (answer === "CLOUDFLARE") {
             console.log("Handling CLOUDFLARE error");
@@ -453,9 +508,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             explanationContent = "CLOUDFLARE error";
         } else {
             console.log("Handling general error:", answer);
-            document.getElementById('output').style.opacity = 1;
-            document.getElementById('output').innerHTML = 'Something went wrong. Error: ' + answer;
+            outputElement.innerHTML = 'Something went wrong. Error: ' + answer;
+            outputElement.style.opacity = 1;
             explanationContent = 'Error: ' + answer;
+            
+            // Scroll to the error message
+            scrollToElement(outputElement);
         }
         
         // Save to history for error cases as well if we have valid input
