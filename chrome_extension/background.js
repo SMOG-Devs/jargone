@@ -117,4 +117,3 @@ chrome.runtime.onConnect.addListener((port) => {
         console.log("Port disconnected:", port.name);
     });
 });
-
