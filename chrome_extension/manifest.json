@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "jarGONE",
+    "description": "Enterprise Jargon Decoder",
+    "version": "0.1.0",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["http://localhost/*"],
+    "icons": {
+        "512": "assets/icons/jargone_logo.png"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["*.html"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}

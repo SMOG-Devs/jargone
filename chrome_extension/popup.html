@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jarGONE</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <img src="assets/icons/jargone_logo.png" alt="jarGONE Logo" class="logo">
+                <h1>jarGONE</h1>
+            </div>
+            <div class="subtitle">Enterprise Jargon Decoder</div>
+        </header>
+
+        <nav class="tabs">
+            <button id="results-tab" class="tab-button active">
+                <i class="fas fa-file-alt"></i> Results
+            </button>
+            <button id="history-tab" class="tab-button">
+                <i class="fas fa-history"></i> History
+            </button>
+            <button id="profile-tab" class="tab-button">
+                <i class="fas fa-user-cog"></i> Profile
+            </button>
+        </nav>
+
+        <main>
+            <div id="results-content" class="tab-content">
+                <div class="input-container">
+                    <div class="label">Selected Text:</div>
+                    <div class="editable" contenteditable="false" id="input" placeholder="Select text on any webpage to explain jargon"></div>
+                    
+                    <button id="submit-request" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Explain Jargon
+                    </button>
+                </div>
+                
+                <div class="output-container">
+                    <div class="label">Explanation:</div>
+                    <div class="editable" contenteditable="false" id="output"></div>
+                </div>
+            </div>
+
+            <div id="history-content" class="tab-content" style="display: none;">
+                <div class="history-header">
+                    <h2><i class="fas fa-history"></i> Recent Searches</h2>
+                    <button id="clear-history" class="clear-btn">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+                
+                <div class="history-wrapper">
+                    <div id="history-container" class="history-list">
+                        <!-- History items will be populated by JavaScript -->
+                        <div class="history-empty">
+                            <i class="fas fa-search fa-2x" style="opacity: 0.3; margin-bottom: 10px;"></i>
+                            <p>Your search history will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile-content" class="tab-content" style="display: none;">
+                <div class="profile-header">
+                    <h2><i class="fas fa-user-cog"></i> User Profile</h2>
+                    <button id="save-profile" class="save-btn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+                
+                <div class="profile-form">
+                    <div class="profile-section">
+                        <div class="profile-label">Explanation Level:</div>
+                        <div class="profile-department-options">
+                            <button class="profile-department-option" data-level="basic">
+                                <i class="fas fa-user"></i> Basic
+                            </button>
+                            <button class="profile-department-option" data-level="detailed">
+                                <i class="fas fa-user-graduate"></i> Detailed
+                            </button>
+                        </div>
+                        <div class="profile-help">Choose how detailed you want your jargon explanations to be.</div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="profile-label">Who Are You?</div>
+                        <input type="text" id="profile-user-role" placeholder="E.g., Marketing Manager, Software Developer, Financial Analyst..." />
+                        <div class="profile-help">Your role or background helps tailor explanations to your needs.</div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="profile-label">Additional Context:</div>
+                        <textarea id="profile-default-context" placeholder="Add any default context that should be included with all your jargon explanations..."></textarea>
+                        <div class="profile-help">This will be automatically included with all your jargon queries.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="powered-by">
+                <i class="fas fa-bolt" style="color: var(--primary-color); margin-right: 4px;"></i>
+                Powered by jarGONE Enterprise
+            </div>
+            <div class="version">v1.0.0</div>
+        </footer>
+        
+        <!-- Toast notification -->
+        <div id="toast-notification" class="toast-notification">
+            <i class="fas fa-check-circle"></i> Profile saved successfully!
+        </div>
+    </div>
+
+    <script src="./popup.js"></script>
+</body>
+</html>
