@@ -55,12 +55,14 @@ const getResponse = async (payload) => {
         try {
             // Extract data from payload
             const question = payload.question || "";
-            const department = payload.department || "general";
+            const explanationLevel = payload.explanationLevel || "detailed";
+            const userRole = payload.userRole || "";
             const additionalContext = payload.additionalContext || "";
             
             console.log("Making fetch request to localhost:8000/explain with params:", {
                 text: question,
-                department: department,
+                explanationLevel: explanationLevel,
+                userRole: userRole,
                 additionalContext: additionalContext
             });
             
@@ -71,7 +73,8 @@ const getResponse = async (payload) => {
                 },
                 body: JSON.stringify({
                     "text": question,
-                    "department": department,
+                    "explanationLevel": explanationLevel,
+                    "userRole": userRole,
                     "additionalContext": additionalContext
                 })
             });

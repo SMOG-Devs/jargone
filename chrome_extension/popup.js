@@ -525,63 +525,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         showLoading();
         
         try {
-            // API request would go here
-            // For now, we'll simulate a response
-            await sleep(1500); // Simulate API delay
+            // Connect to background service worker
+            console.log("Connecting to background service worker");
+            const port = chrome.runtime.connect({ name: "popup-port" });
             
-            // Generate response based on explanation level
-            let response;
-            if (explanationLevel === 'basic') {
-                response = `<div class="explanation">Here's your basic jargon explanation:</div>
-                <div class="definitions">
-                    <h3>Simplified Terms:</h3>
-                    <ul>
-                        <li><strong>KPI</strong>: Key Performance Indicator - a way to measure progress.</li>
-                        <li><strong>ROI</strong>: Return on Investment - whether you're getting back more than you put in.</li>
-                    </ul>
-                </div>`;
-            } else if (explanationLevel === 'expert') {
-                response = `<div class="explanation">Here's your expert-level jargon explanation:</div>
-                <div class="definitions">
-                    <h3>Technical Definitions:</h3>
-                    <ul>
-                        <li><strong>EBITDA</strong>: Earnings Before Interest, Taxes, Depreciation, and Amortization - a measure of a company's overall financial performance that includes all operational aspects while excluding non-operational factors.</li>
-                        <li><strong>API</strong>: Application Programming Interface - a set of definitions and protocols for building and integrating application software, often serving as a contract between the information provider and user.</li>
-                    </ul>
-                </div>`;
-            } else {
-                // detailed is the default
-                response = `<div class="explanation">Here's your detailed jargon explanation:</div>
-                <div class="definitions">
-                    <h3>Business Terms:</h3>
-                    <ul>
-                        <li><strong>KPI</strong>: Key Performance Indicator - measurable value that shows how effectively a company is achieving key business objectives.</li>
-                        <li><strong>ROI</strong>: Return on Investment - measures the gain or loss from an investment relative to its cost.</li>
-                    </ul>
-                </div>`;
-            }
+            // Create the request payload with updated profile data
+            const payload = {
+                question: text,
+                explanationLevel: explanationLevel,
+                userRole: userRole,
+                additionalContext: additionalContext
+            };
             
-            // Add user role information if provided
-            if (userRole && userRole.trim()) {
-                response += `<div class="user-role-note">
-                    <p><strong>Tailored for:</strong> ${userRole}</p>
-                </div>`;
-            }
+            console.log("Sending payload:", payload);
+            port.postMessage(payload);
             
-            // Add additional context note if provided
-            if (additionalContext && additionalContext.trim()) {
-                response += `<div class="context-note">
-                    <p><strong>Additional context applied:</strong> ${additionalContext}</p>
-                </div>`;
-            }
-            
-            // Add to history
-            historyManager.addToHistory(text, response, explanationLevel, userRole, additionalContext);
-            
-            // Display the response
-            hideLoading();
-            showPopup(response, text, explanationLevel, userRole, additionalContext);
-            
+            // Handle the response
+            port.onMessage.addListener((msg) => {
+                console.log("Received message from background:", msg);
+                
+                // Hide loading animation (implicitly by replacing content)
+                showPopup(msg, text, explanationLevel, userRole, additionalContext);
+            });
         } catch (error) {
             console.error("Error processing request:", error);
             hideLoading();
@@ -617,49 +582,54 @@ document.addEventListener("DOMContentLoaded", async () => {
                         output += `</ul></div>`;
                     }
                     
+                    // Add user role information if provided
+                    if (userRole && userRole.trim()) {
+                        output += `<div class="user-role-note">
+                            <p><strong>Tailored for:</strong> ${userRole}</p>
+                        </div>`;
+                    }
+                    
+                    // Add additional context note if provided
+                    if (additionalContext && additionalContext.trim()) {
+                        output += `<div class="context-note">
+                            <p><strong>Additional context applied:</strong> ${additionalContext}</p>
+                        </div>`;
+                    }
+                    
+                    explanationContent = output;
                     outputElement.innerHTML = output;
                     outputElement.style.opacity = 1;
-                    explanationContent = output;
-                    
-                    // Scroll to the output area
                     scrollToElement(outputElement);
                     
                     // Save to history
-                    await historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
+                    historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
                     
                     return;
+                } else {
+                    explanationContent = answer;
                 }
             } catch (e) {
-                console.error("JSON parse error:", e);
-                outputElement.innerHTML = `Error parsing response: ${e.message}<br><br>Raw response: ${answer}`;
-                outputElement.style.opacity = 1;
-                explanationContent = `Error parsing response: ${e.message}`;
-                
-                // Scroll to the error message
-                scrollToElement(outputElement);
+                console.error("Error parsing JSON response:", e);
+                explanationContent = answer;
             }
         } else if (answer === "CLOUDFLARE") {
-            console.log("Handling CLOUDFLARE error");
-            document.getElementById('input').style.opacity = 1;
-            document.getElementById('input').innerHTML = 'You need to once visit <a target="_blank" href="https://chat.openai.com/chat">chat.openai.com</a> and check if the connection is secure. Redirecting...';
-            await sleep(3000);
-            chrome.tabs.create({url: "https://chat.openai.com/chat"});
-            explanationContent = "CLOUDFLARE error";
-        } else {
-            console.log("Handling general error:", answer);
-            outputElement.innerHTML = 'Something went wrong. Error: ' + answer;
+            // Handle Cloudflare error
+            explanationContent = '<div class="error">Cloudflare is blocking the request. Please visit <a href="https://chat.openai.com" target="_blank">chat.openai.com</a> and check if the connection is secure. Redirecting...</div>';
+            outputElement.innerHTML = explanationContent;
             outputElement.style.opacity = 1;
-            explanationContent = 'Error: ' + answer;
-            
-            // Scroll to the error message
-            scrollToElement(outputElement);
+            window.open("https://chat.openai.com");
+        } else {
+            // Handle other errors
+            explanationContent = `<div class="error">An error occurred: ${answer}</div>`;
+            outputElement.innerHTML = explanationContent;
+            outputElement.style.opacity = 1;
         }
         
         // Save to history for error cases as well if we have valid input
         if (selectedText && selectedText.length > 0 && explanationContent && explanationContent.length > 0) {
-            await historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
+            historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
         }
-    }
+    };
 
     const getData = async (selection) => {
         console.log("getData called with selection:", selection);
