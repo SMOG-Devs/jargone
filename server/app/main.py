@@ -66,18 +66,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get('/')
+def main():
+    return "Hello world"
 
 @app.post("/explain", response_model=ExplanationResponse)
 async def explain_text(request: TextRequest):
     entities: SQLClient = rag['sql_client']
     ner_recognition: EntityRecognition = rag['ner']
     rag_: Rag = rag['rag']
-    try:
-        rag_results = rag_.process_request(request.text)
-    except Exception as e:
-        logger.error(f"Error explaining text: {e}")
-        print_exc()
-        raise HTTPException(status_code=500, detail=str(e))
     
     try: 
         ents = ner_recognition.extract_named_entities(request.text)
@@ -86,10 +83,19 @@ async def explain_text(request: TextRequest):
         logger.error(f"Error explaining text: {e}")
         print_exc()
         raise HTTPException(status_code=500, detail=str(e))
+    logging.info(ents)
+    
+    try:
+        rag_results = rag_.process_request(request.text, ents)
+    except Exception as e:
+        logger.error(f"Error explaining text: {e}")
+        print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
         
     return ExplanationResponse(
             explanation=rag_results,
-            definitions=ents
+            definitions=[Entity(entity=rec[0], definition=rec[1]) for rec in ents]
         )
 
 

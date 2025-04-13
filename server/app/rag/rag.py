@@ -2,8 +2,8 @@ from openai import OpenAI
 import json
 from pathlib import Path
 import logging
-from typing import List
-from embedder import Embedder
+from typing import List, Tuple
+from .embedder import Embedder
 from data.vector import QdrantVectorDB
 logger = logging.getLogger(__name__)
 
@@ -23,10 +23,6 @@ class Rag:
         self.api_key = api_key
         self.model = model
         self.max_tokens = max_tokens
-        self.context = self._load_context(context_path)
-        if not self.context:
-            logger.error("Failed to load context")
-            return
         if system_prompt:
             self.system_prompt = system_prompt
         else:
@@ -44,7 +40,7 @@ class Rag:
             logger.error(f"Failed to load context: {e}")
             return ""
             
-    def get_prompt(self, request: str) -> str:
+    def get_prompt(self, sentence: str, contexts: List[str], ners: List[Tuple[str,str]]) -> str:
         """Generate a prompt for the OpenAI model.
         
         Args:
@@ -53,8 +49,8 @@ class Rag:
         Returns:
             str: Formatted prompt
         """
-        context_string = "\n\n--------\n\n".join([self.context])
-        return f"Context:\n{context_string}\nSentence to explain: {request}"
+        data = {'sources': contexts, "dictionary": [{'name': ner[0], 'definition': ner[1]} for ner in ners]}
+        return f"Sources:\n{json.dumps(data,ensure_ascii=False,indent=4)}\nSentence to explain: {sentence}"
         
         
     def get_completion(self, prompt: str) -> str:
@@ -77,13 +73,14 @@ class Rag:
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=self.max_tokens,
+                temperature=0.3
             )
             return response.choices[0].message.content
         except Exception as e:
             logger.error(f"OpenAI API call failed: {e}")
             raise
             
-    def process_request(self, request: str) -> str:
+    def process_request(self, request: str, ners: List[Tuple[str,str]]) -> str:
         """Process a request through the OpenAI model.
         
         Args:
@@ -92,7 +89,9 @@ class Rag:
         Returns:
             str: Model's response
         """
-        prompt = self.get_prompt(request)
+        contexts = self._search_context(request)
+        prompt = self.get_prompt(request,contexts,ners)
+        logging.info(f"Prompt: {prompt}")
         return self.get_completion(prompt)
     
     def _embed_request(self, request: str) -> List[float]:
@@ -120,7 +119,7 @@ class Rag:
         request_embedding = self._embed_request(request)
         # Search the context
         results = self.qdrant_db.search(request_embedding)
-        return results
+        return [record['text'] for record in results]
     
 
 # Example usage:
