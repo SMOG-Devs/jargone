@@ -26,7 +26,12 @@ class Rag:
         if system_prompt:
             self.system_prompt = system_prompt
         else:
-            self.system_prompt = "You are a helpful assistant that explains technical terms and concepts. Please explain the following request sentences using only the context provided below. If the context doesn't contain enough information, please say so. If you cannot find an answer, start response with \"Unfortunately\""
+            self.system_prompt = '\n'.join(["You are helpful assistant that explains sentences in plain simple to understand language.",
+                                            'Please explain the following request sentences using only the context provided below.',
+                                            'You will be provided with the context in json format: {"sources": [string],"dictionary": [{"name": string, "definition": string},...]}'
+                                            'sources field contains data from documentation, while dictionary field contains definitions of terms with their definitions.'
+                                            'If the context doesn\'t contain enough information, please say so.',
+                                            'If you cannot find an answer, start response with \"Unfortunately\"'])
         self.qdrant_db = QdrantVectorDB(collection_name="documents", host="vector-server", port=6333, embedding_dim=embedder_dimension)
 
         
