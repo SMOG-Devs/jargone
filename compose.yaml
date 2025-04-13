@@ -1,5 +1,6 @@
 services:   
   server:
+    restart: always
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -8,9 +9,12 @@ services:
       - ./server:/server
     ports:
       - 8000:8000
-    environment:  
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    env_file:
+      - .env
     tty: true
+    depends_on:
+      - vector-server
+      - sql-server
 
   vector-server:
     image: qdrant/qdrant

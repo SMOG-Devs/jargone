@@ -37,6 +37,8 @@ async def lifespan(app: FastAPI):
     load_dotenv()
     # Get API key from environment variable
     api_key = os.getenv("OPENAI_API_KEY")
+    embedder_model = os.getenv("EMBEDDING_MODEL")
+    embedder_dimension = os.getenv("EMBEDDING_DIMENSION")
     if not api_key:
         logger.error("OPENAI_API_KEY environment variable is not set")
         raise ValueError("OPENAI_API_KEY environment variable is not set")
@@ -69,6 +71,7 @@ app.add_middleware(
 async def explain_text(request: TextRequest):
     entities: SQLClient = rag['sql_client']
     ner_recognition: EntityRecognition = rag['ner']
+    rag_: Rag = rag['rag']
     try:
         rag_results = rag.process_request(request.text)
     except Exception as e:
