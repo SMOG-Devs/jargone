@@ -30,9 +30,9 @@ class Rag:
         if system_prompt:
             self.system_prompt = system_prompt
         else:
-            self.system_prompt = '\n'.join(["You are helpful assistant that explains sentences in plain simple to understand language.",
-                                            'Please explain the following request sentences using only the context provided below.',
-                                            'You will be provided with the context in json format: {"sources": [string],"dictionary": [{"name": string, "definition": string},...]}'
+            self.system_prompt = '\n'.join(["Your task is to rewrite provided sentences to be easily understandeable. You will be also provided with data containing informations about certain topic.",
+                                            'The data will contain documentation sources (information about internal data and projects) and dictionary of words used in the field.',
+                                            'You will be provided with the data in json format: {"sources": [string],"dictionary": [{"name": string, "definition": string},...]}'
                                             'sources field contains data from documentation, while dictionary field contains definitions of terms with their definitions.'
                                             'If the context doesn\'t contain enough information, please say so.',
                                             'If you cannot find an answer, start response with \"Unfortunately\"'])
