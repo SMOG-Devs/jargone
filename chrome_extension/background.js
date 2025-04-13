@@ -49,21 +49,30 @@ const getToken = async () => {
     })
 }
 
-const getResponse = async (question) => {
-    console.log("getResponse called with question:", question);
+const getResponse = async (payload) => {
+    console.log("getResponse called with payload:", payload);
     return new Promise(async (resolve, reject) => {
         try {
-            // const accessToken = await getToken();
-            console.log("Making fetch request to localhost:8000/explain with payload:", JSON.stringify({ "text": question }));
+            // Extract data from payload
+            const question = payload.question || "";
+            const department = payload.department || "general";
+            const additionalContext = payload.additionalContext || "";
+            
+            console.log("Making fetch request to localhost:8000/explain with params:", {
+                text: question,
+                department: department,
+                additionalContext: additionalContext
+            });
             
             const res = await fetch("http://localhost:8000/explain", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    // "Authorization": "Bearer " + accessToken,
                 },
                 body: JSON.stringify({
-                    "text": question
+                    "text": question,
+                    "department": department,
+                    "additionalContext": additionalContext
                 })
             });
             
@@ -99,10 +108,8 @@ chrome.runtime.onConnect.addListener((port) => {
     
     port.onMessage.addListener((msg) => {
         console.log("Message received on port:", msg);
-        const question = msg.question;
-        console.log("Processing question:", question);
         
-        getResponse(question)
+        getResponse(msg)
             .then(jsonResponse => {
                 console.log("Sending response to popup:", jsonResponse);
                 port.postMessage(jsonResponse);

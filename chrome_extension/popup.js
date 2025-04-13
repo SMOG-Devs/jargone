@@ -24,6 +24,49 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+    // Migrate old history data to new format
+    const migrateHistoryData = async () => {
+        console.log("Checking if history migration is needed");
+        try {
+            const result = await chrome.storage.local.get(['jargone_history']);
+            const history = result.jargone_history || [];
+            
+            if (history.length === 0) {
+                console.log("No history to migrate");
+                return;
+            }
+            
+            let needsMigration = false;
+            
+            // Check if any history items are missing the department or additionalContext
+            for (const item of history) {
+                if (item.department === undefined || item.additionalContext === undefined) {
+                    needsMigration = true;
+                    break;
+                }
+            }
+            
+            if (needsMigration) {
+                console.log("Migrating history data to new format");
+                
+                // Update each item to include department and additionalContext if missing
+                const migratedHistory = history.map(item => ({
+                    ...item,
+                    department: item.department || "general",
+                    additionalContext: item.additionalContext || ""
+                }));
+                
+                // Save updated history
+                await chrome.storage.local.set({ 'jargone_history': migratedHistory });
+                console.log("History migration complete");
+            } else {
+                console.log("History data is already in the correct format");
+            }
+        } catch (e) {
+            console.error("Error during history migration:", e);
+        }
+    };
+
     // History management functions
     const historyManager = {
         getHistory: async () => {
@@ -32,6 +75,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const result = await chrome.storage.local.get(['jargone_history']);
                 const history = result.jargone_history || [];
                 console.log("Retrieved history items:", history.length);
+                
+                // Log sample of first few history items for debugging
+                if (history.length > 0) {
+                    console.log("Sample history item:", JSON.stringify(history[0]));
+                }
+                
                 return history;
             } catch (e) {
                 console.error("Error getting history:", e);
@@ -39,8 +88,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         },
         
-        addToHistory: async (query, explanation) => {
-            console.log("Adding to history:", {query, explanation: explanation.substring(0, 50) + "..."});
+        addToHistory: async (query, explanation, department, additionalContext) => {
+            console.log("Adding to history:", {
+                query, 
+                explanation: explanation.substring(0, 50) + "...",
+                department,
+                additionalContext: additionalContext ? additionalContext.substring(0, 50) + "..." : "None"
+            });
             
             try {
                 const history = await historyManager.getHistory();
@@ -50,6 +104,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     id: Date.now(),
                     query: query,
                     explanation: explanation,
+                    department: department,
+                    additionalContext: additionalContext || "",
                     timestamp: new Date().toISOString()
                 };
                 
@@ -91,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const history = await historyManager.getHistory();
                 console.log("Current history items:", history.length);
                 
-                if (history.length === 0) {
+                if (!history || history.length === 0) {
                     historyContainer.innerHTML = `
                         <div class="history-empty">
                             <i class="fas fa-search fa-2x" style="opacity: 0.3; margin-bottom: 10px;"></i>
@@ -103,33 +159,86 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 let historyHTML = '';
                 
-                history.forEach(item => {
-                    const date = new Date(item.timestamp);
-                    const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    
-                    historyHTML += `
-                        <div class="history-item" data-id="${item.id}">
-                            <div class="history-query">${item.query.length > 50 ? item.query.substring(0, 50) + '...' : item.query}</div>
-                            <div class="history-time"><i class="fas fa-clock"></i> ${formattedDate}</div>
-                        </div>
-                    `;
+                history.forEach((item, index) => {
+                    try {
+                        // Ensure all item properties exist
+                        const id = item.id || Date.now() + index;
+                        const query = item.query || "Unknown query";
+                        const timestamp = item.timestamp || new Date().toISOString();
+                        
+                        // Format date
+                        const date = new Date(timestamp);
+                        const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        
+                        // Get department icon and name, with fallback to "general"
+                        const department = item.department || "general";
+                        let deptIcon = 'fa-building';
+                        if (department === 'tech') deptIcon = 'fa-laptop-code';
+                        else if (department === 'finance') deptIcon = 'fa-chart-line';
+                        
+                        // Capitalize first letter of department
+                        const displayDepartment = department.charAt(0).toUpperCase() + department.slice(1);
+                        
+                        console.log(`Rendering history item ${index}:`, { id, query: query.substring(0, 20) + "..." });
+                        
+                        // Create the history item HTML
+                        historyHTML += `
+                            <div class="history-item" data-id="${id}">
+                                <div class="history-query">${query.length > 50 ? query.substring(0, 50) + '...' : query}</div>
+                                <div class="history-meta">
+                                    <span class="history-dept"><i class="fas ${deptIcon}"></i> ${displayDepartment}</span>
+                                </div>
+                                <div class="history-time"><i class="fas fa-clock"></i> ${formattedDate}</div>
+                            </div>
+                        `;
+                    } catch (itemError) {
+                        console.error(`Error processing history item ${index}:`, itemError, item);
+                    }
                 });
                 
-                historyContainer.innerHTML = historyHTML;
+                // Set the HTML content
+                historyContainer.innerHTML = historyHTML || `
+                    <div class="history-empty">
+                        <i class="fas fa-exclamation-circle fa-2x" style="opacity: 0.3; margin-bottom: 10px;"></i>
+                        <p>Could not display history items</p>
+                    </div>
+                `;
+                console.log("History rendering complete");
                 
                 // Add click event listeners to history items
                 document.querySelectorAll('.history-item').forEach(item => {
                     item.addEventListener('click', async () => {
-                        const id = parseInt(item.getAttribute('data-id'));
-                        const history = await historyManager.getHistory();
-                        const historyItem = history.find(h => h.id === id);
-                        
-                        if (historyItem) {
-                            // Display the historical item in the main tab
-                            document.getElementById('results-tab').click();
-                            document.getElementById('input').innerHTML = historyItem.query;
-                            document.getElementById('input').style.opacity = 1;
-                            document.getElementById('output').innerHTML = historyItem.explanation;
+                        try {
+                            const id = parseInt(item.getAttribute('data-id'));
+                            console.log("History item clicked with ID:", id);
+                            
+                            const history = await historyManager.getHistory();
+                            const historyItem = history.find(h => h.id === id);
+                            
+                            if (historyItem) {
+                                console.log("Found history item:", historyItem);
+                                
+                                // Display the historical item in the main tab
+                                document.getElementById('results-tab').click();
+                                document.getElementById('input').innerHTML = historyItem.query || "";
+                                document.getElementById('input').style.opacity = 1;
+                                
+                                // Set department with fallback to "general"
+                                setActiveDepartment(historyItem.department || "general");
+                                
+                                // Set additional context if any
+                                document.getElementById('additional-context').value = historyItem.additionalContext || '';
+                                
+                                document.getElementById('output').innerHTML = historyItem.explanation || "";
+                                document.getElementById('output').style.opacity = 1;
+                            } else {
+                                console.error("History item not found with id:", id);
+                                document.getElementById('output').innerHTML = "Error: Could not load the selected history item";
+                                document.getElementById('output').style.opacity = 1;
+                            }
+                        } catch (e) {
+                            console.error("Error displaying history item:", e);
+                            document.getElementById('output').innerHTML = "Error loading history item: " + e.message;
                             document.getElementById('output').style.opacity = 1;
                         }
                     });
@@ -138,11 +247,66 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.error("Error rendering history:", e);
                 historyContainer.innerHTML = `
                     <div class="history-empty">
+                        <i class="fas fa-exclamation-circle fa-2x" style="color: var(--danger-color); margin-bottom: 10px;"></i>
                         <p>Error loading history: ${e.message}</p>
                     </div>
                 `;
             }
         }
+    };
+
+    // Department selection handling
+    const setupDepartmentSelection = () => {
+        const departmentOptions = document.querySelectorAll('.department-option');
+        
+        departmentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all options
+                departmentOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to clicked option
+                option.classList.add('active');
+            });
+        });
+    };
+    
+    const getActiveDepartment = () => {
+        const activeOption = document.querySelector('.department-option.active');
+        return activeOption ? activeOption.getAttribute('data-department') : 'general';
+    };
+    
+    const setActiveDepartment = (department) => {
+        const departmentOptions = document.querySelectorAll('.department-option');
+        departmentOptions.forEach(opt => {
+            if (opt.getAttribute('data-department') === department) {
+                opt.classList.add('active');
+            } else {
+                opt.classList.remove('active');
+            }
+        });
+    };
+
+    // Setup submit button
+    const setupSubmitButton = () => {
+        const submitButton = document.getElementById('submit-request');
+        submitButton.addEventListener('click', () => {
+            const selectedText = document.getElementById('input').innerHTML;
+            
+            if (selectedText && selectedText !== "You have to first select some text") {
+                const department = getActiveDepartment();
+                const additionalContext = document.getElementById('additional-context').value;
+                
+                // Prepare the output area for loading state
+                document.getElementById('output').style.opacity = 0.5;
+                document.getElementById('output').innerHTML = "Loading...";
+                
+                // Process the request
+                processRequest(selectedText, department, additionalContext);
+            } else {
+                document.getElementById('output').style.opacity = 1;
+                document.getElementById('output').innerHTML = "Please select text from a webpage first.";
+            }
+        });
     };
 
     // Tab switching functionality
@@ -189,10 +353,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         return tabs[0]
     }
 
-    const showPopup = async (answer) => {
-        console.log("showPopup called with answer:", answer);
+    const processRequest = async (text, department, additionalContext) => {
+        console.log("Processing request:", { text, department, additionalContext });
+        
+        // Connect to background service worker
+        console.log("Connecting to background service worker");
+        const port = chrome.runtime.connect({ name: "popup-port" });
+        
+        // Create the request payload
+        const payload = {
+            question: text,
+            department: department,
+            additionalContext: additionalContext
+        };
+        
+        console.log("Sending payload:", payload);
+        port.postMessage(payload);
+        
+        // Handle the response
+        port.onMessage.addListener((msg) => {
+            console.log("Received message from background:", msg);
+            showPopup(msg, text, department, additionalContext);
+        });
+    };
+
+    const showPopup = async (answer, selectedText, department, additionalContext) => {
+        console.log("showPopup called with:", { answer, selectedText, department, additionalContext });
         let explanationContent = "";
-        let selectedText = document.getElementById('input').innerHTML;
         
         if (answer !== "CLOUDFLARE" && !answer.startsWith("ERROR")) {
             try {
@@ -221,13 +408,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     document.getElementById('output').innerHTML = output;
                     explanationContent = output;
                     
-                    // Save to history right after displaying
-                    if (selectedText && selectedText.length > 0) {
-                        console.log("Saving to history with text:", selectedText);
-                        await historyManager.addToHistory(selectedText, explanationContent);
-                    } else {
-                        console.log("Not saving to history - empty selection");
-                    }
+                    // Save to history
+                    await historyManager.addToHistory(selectedText, explanationContent, department, additionalContext);
                     
                     return;
                 }
@@ -251,10 +433,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             explanationContent = 'Error: ' + answer;
         }
         
-        // Save to history outside of success case as well
+        // Save to history for error cases as well if we have valid input
         if (selectedText && selectedText.length > 0 && explanationContent && explanationContent.length > 0) {
-            console.log("Saving to history outside success path:", selectedText);
-            await historyManager.addToHistory(selectedText, explanationContent);
+            await historyManager.addToHistory(selectedText, explanationContent, department, additionalContext);
         }
     }
 
@@ -263,16 +444,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (selection.length != 0) {
             document.getElementById('input').style.opacity = 1;
             document.getElementById('input').innerHTML = selection;
-            document.getElementById('output').style.opacity = 0.5;
-            document.getElementById('output').innerHTML = "Loading...";
-            console.log("Connecting to background service worker");
-            const port = chrome.runtime.connect({name: "popup-port"});
-            console.log("Posting message with question:", selection);
-            port.postMessage({question: selection});
-            port.onMessage.addListener((msg) => {
-                console.log("Received message from background:", msg);
-                showPopup(msg);
-            });
+            document.getElementById('output').style.opacity = 0;
+            document.getElementById('output').innerHTML = "";
         } else {
             console.log("No text selected");
             document.getElementById('input').style.opacity = 0.5;
@@ -292,6 +465,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Initialize
     setupTabs();
+    setupDepartmentSelection();
+    setupSubmitButton();
+    await migrateHistoryData();
     await historyManager.renderHistory();
     getSelectedText();
 });
