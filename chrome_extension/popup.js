@@ -286,6 +286,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     };
 
+    // Show loading animation
+    const showLoading = () => {
+        const outputElement = document.getElementById('output');
+        outputElement.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-jar">
+                    <div class="jar-lid"></div>
+                    <div class="jar-body">
+                        <div class="jar-liquid"></div>
+                        <div class="jar-bubbles"></div>
+                    </div>
+                </div>
+                <div class="loading-text">Decoding jargon...</div>
+            </div>
+        `;
+        outputElement.style.opacity = 1;
+    };
+
+    // Hide loading animation
+    const hideLoading = () => {
+        // The content will be replaced by the actual results
+        // so we don't need to explicitly hide it
+    };
+
     // Setup submit button
     const setupSubmitButton = () => {
         const submitButton = document.getElementById('submit-request');
@@ -296,9 +320,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const department = getActiveDepartment();
                 const additionalContext = document.getElementById('additional-context').value;
                 
-                // Prepare the output area for loading state
-                document.getElementById('output').style.opacity = 0.5;
-                document.getElementById('output').innerHTML = "Loading...";
+                // Show loading animation
+                showLoading();
                 
                 // Process the request
                 processRequest(selectedText, department, additionalContext);
@@ -373,6 +396,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Handle the response
         port.onMessage.addListener((msg) => {
             console.log("Received message from background:", msg);
+            
+            // Hide loading animation (implicitly by replacing content)
             showPopup(msg, text, department, additionalContext);
         });
     };
