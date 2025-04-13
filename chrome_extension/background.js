@@ -50,54 +50,71 @@ const getToken = async () => {
 }
 
 const getResponse = async (question) => {
+    console.log("getResponse called with question:", question);
     return new Promise(async (resolve, reject) => {
         try {
-            const accessToken = await getToken();
-            const res = await fetch("https://chat.openai.com/backend-api/conversation", {
+            // const accessToken = await getToken();
+            console.log("Making fetch request to localhost:8000/explain with payload:", JSON.stringify({ "text": question }));
+            
+            const res = await fetch("http://localhost:8000/explain", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + accessToken,
+                    // "Authorization": "Bearer " + accessToken,
                 },
                 body: JSON.stringify({
-                    action: "next",
-                    messages: [
-                        {
-                            id: uid(),
-                            role: "user",
-                            content: {
-                                content_type: "text",
-                                parts: [question]
-                            }
-                        }
-                    ],
-                    model: "text-davinci-002-render",
-                    parent_message_id: uid()
+                    "text": question
                 })
-            })   
-            resolve(res.body)
+            });
+            
+            console.log("Fetch response status:", res.status);
+            
+            if (!res.ok) {
+                console.error("API request failed with status:", res.status);
+                const errorText = await res.text();
+                console.error("Error response:", errorText);
+                reject("ERROR: API request failed with status " + res.status);
+                return;
+            }
+            
+            // Parse the JSON response
+            const jsonResponse = await res.json();
+            console.log("API response:", jsonResponse);
+            
+            // Send the parsed response directly
+            resolve(JSON.stringify(jsonResponse));
         } catch (e) {
+            console.error("Exception in getResponse:", e);
             if (e === "CLOUDFLARE") {
-                reject("CLOUDFLARE")
+                reject("CLOUDFLARE");
             } else {
-                reject("ERROR")
+                reject("ERROR: " + e.message);
             }
         }
-    })
-}
+    });
+};
 
 chrome.runtime.onConnect.addListener((port) => {
+    console.log("Port connected:", port.name);
+    
     port.onMessage.addListener((msg) => {
-        const question = msg.question
-        getResponse(question).then(async answer => {
-            const resRead = answer.getReader()
-            while (true) {
-                const {done, value} = await resRead.read()
-                if (done) break
-                if (done === undefined || value === undefined) port.postMessage('ERROR')
-                const data = new TextDecoder().decode(value)
-                port.postMessage(data)
-            }
-        }).catch((e) => port.postMessage(e))
-    })
-})
+        console.log("Message received on port:", msg);
+        const question = msg.question;
+        console.log("Processing question:", question);
+        
+        getResponse(question)
+            .then(jsonResponse => {
+                console.log("Sending response to popup:", jsonResponse);
+                port.postMessage(jsonResponse);
+            })
+            .catch((error) => {
+                console.error("getResponse promise rejected:", error);
+                port.postMessage(error);
+            });
+    });
+    
+    port.onDisconnect.addListener(() => {
+        console.log("Port disconnected:", port.name);
+    });
+});
+

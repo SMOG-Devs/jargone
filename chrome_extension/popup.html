@@ -4,14 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>select-gpt</title>
+    <title>jarGONE</title>
 
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>jarGONE</h1>
-    <div class="editable" contenteditable="false" id="input" placeholder="Loading..."></div><br/>
-    <div class="editable" contenteditable="false" id="output"></div>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <img src="assets/icons/hexagonal.png" alt="jarGONE Logo" class="logo">
+                <h1>jarGONE</h1>
+            </div>
+            <div class="subtitle">Enterprise Jargon Decoder</div>
+        </header>
+
+        <nav class="tabs">
+            <button id="results-tab" class="tab-button active">
+                <i class="fas fa-file-alt"></i> Results
+            </button>
+            <button id="history-tab" class="tab-button">
+                <i class="fas fa-history"></i> History
+            </button>
+        </nav>
+
+        <main>
+            <div id="results-content" class="tab-content">
+                <div class="input-container">
+                    <div class="label">Selected Text:</div>
+                    <div class="editable" contenteditable="false" id="input" placeholder="Select text on any webpage to explain jargon"></div>
+                </div>
+                
+                <div class="output-container">
+                    <div class="label">Explanation:</div>
+                    <div class="editable" contenteditable="false" id="output"></div>
+                </div>
+            </div>
+
+            <div id="history-content" class="tab-content" style="display: none;">
+                <div class="history-header">
+                    <h2>Recent Searches</h2>
+                    <button id="clear-history" class="clear-btn">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+                <div id="history-container" class="history-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="powered-by">Powered by jarGONE Enterprise</div>
+            <div class="version">v1.0.0</div>
+        </footer>
+    </div>
 
     <script src="./popup.js"></script>
 </body>
