@@ -269,7 +269,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .history-header h2 {
@@ -310,33 +310,56 @@ main {
 }
 
 .history-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     max-height: 400px;
     overflow-y: auto;
+    padding: 2px;
 }
 
 .history-item {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
-    padding: 14px 16px;
+    padding: 16px;
     border: 1px solid var(--border-color);
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.history-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary-light);
+    opacity: 0.7;
 }
 
 .history-item:hover {
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
-    border-color: #d8d8d8;
+    border-color: var(--primary-light);
 }
 
 .history-query {
     font-weight: 500;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     color: var(--text-color);
+    font-size: 14px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .history-time {
@@ -344,11 +367,15 @@ main {
     color: #64748b;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border-color);
 }
 
 .history-time i {
-    font-size: 10px;
+    font-size: 11px;
+    color: var(--primary-color);
 }
 
 .history-empty {
@@ -359,6 +386,22 @@ main {
     background-color: rgba(0, 0, 0, 0.02);
     border-radius: var(--border-radius);
     border: 1px dashed var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 2;
+}
+
+/* For smaller screens, switch to a single column */
+@media (max-width: 420px) {
+    .history-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .history-empty {
+        grid-column: span 1;
+    }
 }
 
 /* Footer */
