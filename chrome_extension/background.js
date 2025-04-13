@@ -112,11 +112,20 @@ chrome.runtime.onConnect.addListener((port) => {
         getResponse(msg)
             .then(jsonResponse => {
                 console.log("Sending response to popup:", jsonResponse);
-                port.postMessage(jsonResponse);
+                
+                // Add a small artificial delay to ensure the loading animation is visible
+                // This can be removed in production if the API is slow enough
+                setTimeout(() => {
+                    port.postMessage(jsonResponse);
+                }, 1500); // 1.5 second delay
             })
             .catch((error) => {
                 console.error("getResponse promise rejected:", error);
-                port.postMessage(error);
+                
+                // Add a small artificial delay for errors too
+                setTimeout(() => {
+                    port.postMessage(error);
+                }, 1500); // 1.5 second delay
             });
     });
     
