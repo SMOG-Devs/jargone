@@ -19,7 +19,7 @@ class DocumentChunk(BaseModel):
     named_entities: List[str] = Field(default_factory=list)
     metadata: Dict[str, Any] = Field(default_factory=dict)
     embedding: Optional[List[float]] = None
-    id: Optional[int] = None
+    id: str = None
     
     @property
     def content(self) -> str:
@@ -88,12 +88,10 @@ class QdrantVectorDB:
         # Use document ID if provided, otherwise generate one
         doc_id = chunk.id if chunk.id is not None else f"{chunk.source_name}_{chunk.chunk_id}"
         
-        # Ensure the ID is correctly formatted
-        point_id = str(doc_id) if isinstance(doc_id, str) else doc_id
         
         point = models.PointStruct(
-            id=point_id,  # Use the correctly formatted ID
             vector=chunk.embedding,
+            id=chunk.id,
             payload={
                 "text": chunk.text,
                 "source_name": chunk.source_name,

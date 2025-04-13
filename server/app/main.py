@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict, Any, Optional
 from contextlib import asynccontextmanager
 from data.sql_client import SQLClient
 import os
@@ -28,6 +28,14 @@ class ExplanationResponse(BaseModel):
     explanation: str
     definitions: List[Entity]
 
+class DocumentChunk(BaseModel):
+    content: str
+    source: str
+    metadata: Optional[Dict[str, Any]] = None
+
+class SaveResponse(BaseModel):
+    success: bool
+    message: str
 
 rag = {}
 
@@ -109,6 +117,60 @@ async def explain_text(request: TextRequest):
     return ExplanationResponse(
             explanation=rag_results,
             definitions=ents_
+        )
+
+@app.post("/save-document", response_model=SaveResponse)
+async def save_document(document: DocumentChunk):
+    """Save a document chunk to the Qdrant database.
+    
+    Args:
+        document: DocumentChunk object containing content and optional metadata
+        
+    Returns:
+        SaveResponse with success status and message
+        
+    Raises:
+        HTTPException: With appropriate status code for different error scenarios
+    """
+    rag_: Rag = rag['rag']
+    
+    try:
+        # Use the RAG instance to save the document chunk
+        success = rag_.save_document_chunk(
+            content=document.content,
+            source=document.source,
+            metadata=document.metadata,
+        )
+        
+        if success:
+            return SaveResponse(
+                success=True,
+                message=f"Document chunk saved successfully"
+            )
+        else:
+            raise HTTPException(
+                status_code=500,
+                detail="Failed to save document chunk to database"
+            )
+    except ValueError as e:
+        # Handle validation errors
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid document data: {str(e)}"
+        )
+    except ConnectionError as e:
+        # Handle connection errors to the vector database
+        raise HTTPException(
+            status_code=503,
+            detail=f"Vector database connection error: {str(e)}"
+        )
+    except Exception as e:
+        # Handle other unexpected errors
+        logger.error(f"Error saving document chunk: {e}")
+        print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal server error: {str(e)}"
         )
 
 

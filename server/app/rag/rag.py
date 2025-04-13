@@ -2,9 +2,13 @@ from openai import OpenAI
 import json
 from pathlib import Path
 import logging
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Any, Optional
 from .embedder import Embedder
-from data.vector import QdrantVectorDB
+from data.vector import QdrantVectorDB, DocumentChunk
+from uuid import uuid4
+from ingestion.doc import Document
+
+
 logger = logging.getLogger(__name__)
 
 class Rag:
@@ -33,6 +37,7 @@ class Rag:
                                             'If the context doesn\'t contain enough information, please say so.',
                                             'If you cannot find an answer, start response with \"Unfortunately\"'])
         self.qdrant_db = QdrantVectorDB(collection_name="documents", host="vector-server", port=6333, embedding_dim=embedder_dimension)
+        self.embedder = Embedder(api_key=api_key, model=embedder_model, dimension=embedder_dimension)
 
         
     def _load_context(self, context_path: str) -> str:
@@ -109,8 +114,7 @@ class Rag:
         Returns:
             list: Embedding of the request
         """
-        embedder = Embedder(self.api_key)
-        return embedder.embed_text(request)
+        return self.embedder.embed_text(request)
     
     def _search_context(self, request: str) -> List[str]:
         """Search the context for the most relevant information.
@@ -127,6 +131,45 @@ class Rag:
         results = self.qdrant_db.search(request_embedding)
         return [record['text'] for record in results]
     
+    def save_document_chunk(self, content: str, source: str, metadata: Dict[str, Any] = None) -> bool:
+        """Save a document chunk to the Qdrant database.
+        
+        Args:
+            content (str): Text content of the chunk
+            metadata (Dict[str, Any], optional): Additional metadata for the chunk
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            doc = Document(content, source)
+
+            chunks = doc.chunkize()
+            documents = []
+            for chunk in chunks:
+                # Generate embedding for the content
+                embedding = self.embedder.embed_text(chunk.text)
+                documents.append(DocumentChunk(
+                    text=chunk.text,
+                    id=str(uuid4()),
+                    embedding=embedding
+                ))
+
+            # # Create a DocumentChunk object
+            # chunk = DocumentChunk(
+            #     text=content,
+            #     id=int(uuid4()),
+            #     embedding=embedding
+            # )
+
+            # Add to Qdrant database
+            self.qdrant_db.add_documents(documents)
+            
+            logger.info(f"Successfully saved document chunks")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to save document chunk: {e}")
+            return False
 
 # Example usage:
 if __name__ == "__main__":
