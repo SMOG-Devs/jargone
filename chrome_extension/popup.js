@@ -460,9 +460,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Process the request
                 await processRequest(input.textContent, profile.explanationLevel, profile.userRole, profile.defaultContext);
             });
-            } else {
+        } else {
             console.error("Submit button not found!");
-            }
+        }
     };
 
     // Tab switching functionality
@@ -655,51 +655,67 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Initialize
-    setupTabs();
-    setupSubmitButton();
-    await migrateHistoryData();
-    await historyManager.renderHistory();
-    getSelectedText();
-
     // ===== Initialize the extension =====
     (async function init() {
+        console.log("Initializing extension..."); // Added log for clarity
         try {
             // Load selected text from the active tab
-            const selectedText = await getSelectedText();
-            
-            // Update the UI with the selected text
-            const inputElement = document.getElementById('input');
-            if (inputElement) {
-                inputElement.innerHTML = selectedText || "Select text on any webpage to explain jargon";
-            }
-            
-            // Load user profile
+            await getSelectedText(); // Keep the call here
+
+            // Update the UI with the selected text (This logic seems to be handled within getSelectedText/getData, maybe redundant?)
+            // const inputElement = document.getElementById('input');
+            // if (inputElement) {
+            //     inputElement.innerHTML = selectedText || "Select text on any webpage to explain jargon";
+            // }
+
+            // Load user profile - Keep this call
             await profileManager.getProfile();
-            
-            // Set up the profile UI and event listeners
+
+            // Set up the profile UI and event listeners - Keep this call
             profileManager.setupProfileListeners();
-            
-            // Set up tabs
+
+            // Set up tabs - Keep this call
             setupTabs();
-            
-            // Set up submit button
+
+            // Set up submit button - Keep this call
             setupSubmitButton();
-            
-            // Set up history refresh (when history tab is clicked)
-            document.getElementById('history-tab').addEventListener('click', () => {
-                historyManager.renderHistory();
-            });
-            
-            // Setup clear history button
-            document.getElementById('clear-history').addEventListener('click', () => {
-                historyManager.clearHistory();
-            });
-            
-            // Migrate old history data if needed
+
+            // Migrate old history data if needed - Keep this call
             await migrateHistoryData();
+
+            // Render initial history - Keep this call
+            await historyManager.renderHistory(); // Moved from top level
+
+            // Set up history refresh (when history tab is clicked)
+            const historyTab = document.getElementById('history-tab');
+            if (historyTab) {
+                historyTab.addEventListener('click', () => {
+                    historyManager.renderHistory();
+                });
+            } else {
+                 console.error("History tab button not found!");
+            }
+
+            // Setup clear history button
+            const clearHistoryButton = document.getElementById('clear-history');
+            if (clearHistoryButton) {
+                clearHistoryButton.addEventListener('click', () => {
+                    historyManager.clearHistory();
+                });
+            } else {
+                console.error("Clear history button not found!");
+            }
+
+            console.log("Extension initialization complete."); // Added log for clarity
+
         } catch (error) {
             console.error("Error initializing extension:", error);
+            // Optionally display an error to the user in the popup
+            const outputElement = document.getElementById('output');
+            if (outputElement) {
+                outputElement.innerHTML = `<div class="error">Error initializing: ${error.message}</div>`;
+                outputElement.style.opacity = 1;
+            }
         }
     })();
 });
