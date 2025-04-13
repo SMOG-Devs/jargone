@@ -940,16 +940,6 @@ main, .history-list, .editable {
     border-color: var(--primary-color);
 }
 
-.profile-department-option[data-level="expert"] {
-    border: 1px solid var(--warning-color);
-    background-color: rgba(245, 158, 11, 0.05);
-}
-
-.profile-department-option[data-level="expert"]:hover {
-    background-color: rgba(245, 158, 11, 0.1);
-    border-color: var(--warning-color);
-}
-
 .profile-department-option[data-level="basic"].active {
     background-color: var(--info-color);
     border-color: var(--info-color);
@@ -968,15 +958,6 @@ main, .history-list, .editable {
     background-color: #1d4ed8; /* Slightly darker shade */
 }
 
-.profile-department-option[data-level="expert"].active {
-    background-color: var(--warning-color);
-    border-color: var(--warning-color);
-}
-
-.profile-department-option[data-level="expert"].active:hover {
-    background-color: #d97706; /* Slightly darker shade */
-}
-
 /* Add corresponding styles for history items */
 .history-item .history-dept:has(i.fa-user) {
     color: var(--info-color);
@@ -986,11 +967,6 @@ main, .history-list, .editable {
 .history-item .history-dept:has(i.fa-user-graduate) {
     color: var(--primary-color);
     background-color: rgba(37, 99, 235, 0.1);
-}
-
-.history-item .history-dept:has(i.fa-brain) {
-    color: var(--warning-color);
-    background-color: rgba(245, 158, 11, 0.1);
 }
 
 #profile-user-role {
