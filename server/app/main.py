@@ -48,7 +48,12 @@ async def lifespan(app: FastAPI):
     rag['sql_client'].load_jargon()
     rag['ner'] = EntityRecognition()
     rag['rag'] = Rag(api_key=api_key, context_path="app/rag/context.json")
+
+
     logger.info("RAG service initialized successfully")
+
+    # Uncomment to fill the Qdrant database
+    # import rag.fill_qdrant_db
 
     yield
     logger.info("Shutting down RAG service")

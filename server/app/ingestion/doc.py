@@ -1,6 +1,6 @@
 from typing import List
-from app.data.vector import DocumentChunk
-from app.ner.NamedEntityExtraction import EntityRecognition
+from data.vector import DocumentChunk
+from ner.NamedEntityExtraction import EntityRecognition
 import os
 from dotenv import load_dotenv
 
