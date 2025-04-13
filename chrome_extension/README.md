@@ -1,4 +1,4 @@
-# jarGONE
+# jargone
 
 A Chrome extension that helps decode enterprise jargon and buzzwords.
 
