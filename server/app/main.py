@@ -6,6 +6,8 @@ from contextlib import asynccontextmanager
 from data.sql_client import SQLClient
 import os
 import logging
+from traceback import print_exc
+from ner.NamedEntityExtraction import EntityRecognition
 
 from rag.rag import Rag
 
@@ -44,6 +46,7 @@ async def lifespan(app: FastAPI):
     # Load the ML model
     rag['sql_client'] = SQLClient()
     rag['sql_client'].load_jargon()
+    rag['ner'] = EntityRecognition()
     rag['rag'] = Rag(api_key=api_key, context_path="app/rag/context.json")
 
 
@@ -71,15 +74,28 @@ app.add_middleware(
 
 @app.post("/explain", response_model=ExplanationResponse)
 async def explain_text(request: TextRequest):
+    entities: SQLClient = rag['sql_client']
+    ner_recognition: EntityRecognition = rag['ner']
+    rag_: Rag = rag['rag']
     try:
-        rag_results = rag['rag'].process_request(request.text)
-        
-        return ExplanationResponse(
-            explanation=rag_results,
-            definitions=[Entity(entity="tmp entity", definition="tmp definition")]
-        )
+        rag_results = rag_.process_request(request.text)
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
+        print_exc()
         raise HTTPException(status_code=500, detail=str(e))
+    
+    try: 
+        ents = ner_recognition.extract_named_entities(request.text)
+        ents = [entities.search_word(ent.text) for ent in ents]
+    except Exception as e:
+        logger.error(f"Error explaining text: {e}")
+        print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+        
+    return ExplanationResponse(
+            explanation=rag_results,
+            definitions=ents
+        )
+
 
     

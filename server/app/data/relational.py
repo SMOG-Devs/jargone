@@ -18,3 +18,6 @@ class Entity(Base):
     detailed_explanation = Column(Text, nullable=True)
     created_at = Column(DateTime, default=lambda: datetime.datetime.now(datetime.UTC))
     updated_at = Column(DateTime, default=lambda: datetime.datetime.now(datetime.UTC), onupdate=lambda: datetime.datetime.now(datetime.UTC))
+    
+    def __repr__(self):
+        return f"<Entity(name='{self.name}')>"
