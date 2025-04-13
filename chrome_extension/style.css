@@ -466,6 +466,7 @@ main {
     overflow-y: auto;
     padding: 6px;
     box-sizing: border-box;
+    align-content: start;
 }
 
 .history-item {
@@ -481,7 +482,7 @@ main {
     position: relative;
     overflow: hidden;
     min-height: 120px; /* Ensure minimum height */
-    height: 100%;
+    height: auto; /* Change this line */
 }
 
 .history-item::before {
