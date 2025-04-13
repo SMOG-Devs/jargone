@@ -73,7 +73,7 @@ async def explain_text(request: TextRequest):
     ner_recognition: EntityRecognition = rag['ner']
     rag_: Rag = rag['rag']
     try:
-        rag_results = rag.process_request(request.text)
+        rag_results = rag_.process_request(request.text)
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
         print_exc()
