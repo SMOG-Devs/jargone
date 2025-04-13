@@ -29,7 +29,7 @@ class SQLClient:
                 session.commit()
                 logging.info(f'Upload Done')
             
-    def search_word(self, word: str) -> Tuple[str,str]:
+    def search_word(self, word: str) -> Tuple[str,str] | None:
         with self.engine.connect() as con:
             rs = con.execute(text(f"SELECT name, detailed_explanation, levenshtein('{word.lower()}',name) as distance FROM entities WHERE levenshtein('{word.lower()}',name) < 2 ORDER BY distance;"))
             result = rs.fetchone()

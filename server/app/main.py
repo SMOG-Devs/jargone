@@ -21,6 +21,8 @@ class TextRequest(BaseModel):
 class Entity(BaseModel):
     entity: str
     definition: str
+    start: int
+    stop: int
 
 class ExplanationResponse(BaseModel):
     explanation: str
@@ -48,12 +50,7 @@ async def lifespan(app: FastAPI):
     rag['sql_client'].load_jargon()
     rag['ner'] = EntityRecognition()
     rag['rag'] = Rag(api_key=api_key, context_path="app/rag/context.json")
-
-
     logger.info("RAG service initialized successfully")
-
-    # Uncomment to fill the Qdrant database
-    # import rag.fill_qdrant_db
 
     yield
     logger.info("Shutting down RAG service")
@@ -83,7 +80,18 @@ async def explain_text(request: TextRequest):
     
     try: 
         ents = ner_recognition.extract_named_entities(request.text)
-        ents = [entities.search_word(ent.text) for ent in ents]
+        ents_: List[Entity] = []
+        for ent in ents:
+            found_entity = entities.search_word(ent.text)
+            if found_entity is not None:
+                ents_.append(
+                    Entity(
+                        entity=found_entity[0],
+                        definition=found_entity[1],
+                        start=ent.start,
+                        stop=ent.stop
+                    )
+                )
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
         print_exc()
@@ -91,7 +99,7 @@ async def explain_text(request: TextRequest):
     logging.info(ents)
     
     try:
-        rag_results = rag_.process_request(request.text, ents)
+        rag_results = rag_.process_request(request.text, [(ent.entity,ent.definition) for ent in ents_])
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
         print_exc()
@@ -100,7 +108,7 @@ async def explain_text(request: TextRequest):
         
     return ExplanationResponse(
             explanation=rag_results,
-            definitions=[Entity(entity=rec[0], definition=rec[1]) for rec in ents]
+            definitions=ents_
         )
 
 
