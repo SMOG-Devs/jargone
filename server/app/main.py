@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 class TextRequest(BaseModel):
     text: str
-    explanationLevel: Literal['high','low']
+    explanationLevel: Literal['detailed','basic']
     userRole: str
     additionalContext: str
 
