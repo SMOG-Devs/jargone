@@ -32,6 +32,7 @@ class Rag:
         else:
             self.system_prompt = "You are a helpful assistant that explains technical terms and concepts. Please explain the following request sentences using only the context provided below. If the context doesn't contain enough information, please say so. If you cannot find an answer, start response with \"Unfortunately\""
         self.qdrant_db = QdrantVectorDB(collection_name="documents", host="vector-server", port=6333, embedding_dim=embedder_dimension)
+
         
     def _load_context(self, context_path: str) -> str:
         """Load context from the context.json file."""
@@ -120,6 +121,7 @@ class Rag:
         request_embedding = self._embed_request(request)
         # Search the context
         results = self.qdrant_db.search(request_embedding)
+        print(f"Vector DB search results: {results}")
         return results
     
 

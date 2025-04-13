@@ -4,7 +4,7 @@ from openai import OpenAI
 class Embedder:
     """Class for generating embeddings using OpenAI's API."""
     
-    def __init__(self, api_key):
+    def __init__(self, api_key, model="text-embedding-3-small", dimension=1536):
         """Initialize the Embedder with an OpenAI API key.
         
         Args:
