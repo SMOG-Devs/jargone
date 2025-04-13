@@ -2,7 +2,7 @@ from openai import OpenAI
 import json
 from pathlib import Path
 import logging
-from typing import List, Tuple, Dict, Any, Optional
+from typing import List, Tuple, Dict, Any, Optional, Literal
 from .embedder import Embedder
 from data.vector import QdrantVectorDB, DocumentChunk
 from uuid import uuid4
@@ -12,7 +12,7 @@ from ingestion.doc import Document
 logger = logging.getLogger(__name__)
 
 class Rag:
-    def __init__(self, api_key: str, model: str = "gpt-4o-mini", max_tokens: int = 800, 
+    def __init__(self, api_key: str, model: str = "gpt-4o", max_tokens: int = 800, 
                  system_prompt: str = None, context_path: str = "server/app/rag/context.json",
                  embedder_model: str = "text-embedding-3-small", embedder_dimension: int = 1536):
         """Initialize the OpenAI connector.
@@ -30,12 +30,14 @@ class Rag:
         if system_prompt:
             self.system_prompt = system_prompt
         else:
-            self.system_prompt = '\n'.join(["Your task is to rewrite provided sentences to be easily understandeable. You will be also provided with data containing informations about certain topic.",
+            self.system_prompt = '\n'.join(["Your task is to rewrite provided sentences to be easily understandeable for avarege person not having domain knowleadge. You will be also provided with data containing informations about certain topic.",
                                             'The data will contain documentation sources (information about internal data and projects) and dictionary of words used in the field.',
+                                            'Additionally, you will get details level. If details level is low, you try to simplyfy it as muh as possible. If you get details level high, you are trying to rewrite sentence more in depth, but still with really understandeable language',
+                                            'Moreover, you will be provided with end user role. Take into consideration, how to best structure your rewrited sentence, to be understandeable for a person with specified role.'
+                                            'You will get 1M$ in cash if the end user rates you five stars.'
                                             'You will be provided with the data in json format: {"sources": [string],"dictionary": [{"name": string, "definition": string},...]}'
                                             'sources field contains data from documentation, while dictionary field contains definitions of terms with their definitions.'
-                                            'If the context doesn\'t contain enough information, please say so.',
-                                            'If you cannot find an answer, start response with \"Unfortunately\"'])
+                                            'Focus on rewriting provided sentences according to requirements above. If the data doesn\'t provide information to simplify the sentences, return these sentence exactly the same.'])
         self.qdrant_db = QdrantVectorDB(collection_name="documents", host="vector-server", port=6333, embedding_dim=embedder_dimension)
         self.embedder = Embedder(api_key=api_key, model=embedder_model, dimension=embedder_dimension)
 
@@ -51,7 +53,7 @@ class Rag:
             logger.error(f"Failed to load context: {e}")
             return ""
             
-    def get_prompt(self, sentence: str, contexts: List[str], ners: List[Tuple[str,str]]) -> str:
+    def get_prompt(self, sentence: str, contexts: List[str], ners: List[Tuple[str,str]], details: Literal['high','low'], role: str) -> str:
         """Generate a prompt for the OpenAI model.
         
         Args:
@@ -61,7 +63,7 @@ class Rag:
             str: Formatted prompt
         """
         data = {'sources': contexts, "dictionary": [{'name': ner[0], 'definition': ner[1]} for ner in ners]}
-        return f"Sources:\n{json.dumps(data,ensure_ascii=False,indent=4)}\nSentence to explain: {sentence}"
+        return f"Sources:\n{json.dumps(data,ensure_ascii=False,indent=4)}\nSentence to explain: {sentence}\nDetails level: {details}\n Role: {role}"
         
         
     def get_completion(self, prompt: str) -> str:
@@ -91,7 +93,7 @@ class Rag:
             logger.error(f"OpenAI API call failed: {e}")
             raise
             
-    def process_request(self, request: str, explanationLevel: str, userRole: str, additionalContext: str, ners: List[Tuple[str,str]]) -> str:
+    def process_request(self, request: str, explanationLevel: Literal['high','low'], userRole: str, additionalContext: str, ners: List[Tuple[str,str]]) -> str:
         """Process a request through the OpenAI model.
         
         Args:
@@ -101,7 +103,7 @@ class Rag:
             str: Model's response
         """
         contexts = self._search_context(request)
-        prompt = self.get_prompt(request, contexts,ners)
+        prompt = self.get_prompt(request, contexts,ners,explanationLevel,userRole)
         logging.info(f"Prompt: {prompt}")
         return self.get_completion(prompt)
     

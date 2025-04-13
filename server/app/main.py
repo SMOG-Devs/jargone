@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 from contextlib import asynccontextmanager
 from data.sql_client import SQLClient
 import os
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 class TextRequest(BaseModel):
     text: str
-    explanationLevel: str
+    explanationLevel: Literal['high','low']
     userRole: str
     additionalContext: str
 
