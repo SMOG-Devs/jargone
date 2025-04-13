@@ -17,6 +17,9 @@ logger = logging.getLogger(__name__)
 
 class TextRequest(BaseModel):
     text: str
+    explanationLevel: str
+    userRole: str
+    additionalContext: str
 
 class Entity(BaseModel):
     entity: str
@@ -38,6 +41,7 @@ class SaveResponse(BaseModel):
     message: str
 
 rag = {}
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -107,7 +111,7 @@ async def explain_text(request: TextRequest):
     logging.info(ents)
     
     try:
-        rag_results = rag_.process_request(request.text, [(ent.entity,ent.definition) for ent in ents_])
+        rag_results = rag_.process_request(request.text, request.explanationLevel, request.userRole, request.additionalContext, [(ent.entity,ent.definition) for ent in ents_])
     except Exception as e:
         logger.error(f"Error explaining text: {e}")
         print_exc()

@@ -91,7 +91,7 @@ class Rag:
             logger.error(f"OpenAI API call failed: {e}")
             raise
             
-    def process_request(self, request: str, ners: List[Tuple[str,str]]) -> str:
+    def process_request(self, request: str, explanationLevel: str, userRole: str, additionalContext: str, ners: List[Tuple[str,str]]) -> str:
         """Process a request through the OpenAI model.
         
         Args:
@@ -101,7 +101,7 @@ class Rag:
             str: Model's response
         """
         contexts = self._search_context(request)
-        prompt = self.get_prompt(request,contexts,ners)
+        prompt = self.get_prompt(request, contexts,ners)
         logging.info(f"Prompt: {prompt}")
         return self.get_completion(prompt)
     
