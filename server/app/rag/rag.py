@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import logging
 from typing import List
-from embedder import Embedder
+from rag.embedder import Embedder
 from data.vector import QdrantVectorDB
 logger = logging.getLogger(__name__)
 
