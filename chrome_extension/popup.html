@@ -26,6 +26,9 @@
             <button id="history-tab" class="tab-button">
                 <i class="fas fa-history"></i> History
             </button>
+            <button id="profile-tab" class="tab-button">
+                <i class="fas fa-user-cog"></i> Profile
+            </button>
         </nav>
 
         <main>
@@ -34,31 +37,9 @@
                     <div class="label">Selected Text:</div>
                     <div class="editable" contenteditable="false" id="input" placeholder="Select text on any webpage to explain jargon"></div>
                     
-                    <div class="options-container">
-                        <div class="department-selection">
-                            <div class="label">Department:</div>
-                            <div class="department-options">
-                                <button class="department-option active" data-department="general">
-                                    <i class="fas fa-building"></i> General
-                                </button>
-                                <button class="department-option" data-department="tech">
-                                    <i class="fas fa-laptop-code"></i> Tech
-                                </button>
-                                <button class="department-option" data-department="finance">
-                                    <i class="fas fa-chart-line"></i> Finance
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="additional-input">
-                            <div class="label">Additional Context:</div>
-                            <textarea id="additional-context" placeholder="Add any additional context or questions..."></textarea>
-                        </div>
-                        
-                        <button id="submit-request" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i> Explain Jargon
-                        </button>
-                    </div>
+                    <button id="submit-request" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Explain Jargon
+                    </button>
                 </div>
                 
                 <div class="output-container">
@@ -85,6 +66,45 @@
                     </div>
                 </div>
             </div>
+
+            <div id="profile-content" class="tab-content" style="display: none;">
+                <div class="profile-header">
+                    <h2><i class="fas fa-user-cog"></i> User Profile</h2>
+                    <button id="save-profile" class="save-btn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+                
+                <div class="profile-form">
+                    <div class="profile-section">
+                        <div class="profile-label">Explanation Level:</div>
+                        <div class="profile-department-options">
+                            <button class="profile-department-option" data-level="basic">
+                                <i class="fas fa-user"></i> Basic
+                            </button>
+                            <button class="profile-department-option" data-level="detailed">
+                                <i class="fas fa-user-graduate"></i> Detailed
+                            </button>
+                            <button class="profile-department-option" data-level="expert">
+                                <i class="fas fa-brain"></i> Expert
+                            </button>
+                        </div>
+                        <div class="profile-help">Choose how detailed you want your jargon explanations to be.</div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="profile-label">Who Are You?</div>
+                        <input type="text" id="profile-user-role" placeholder="E.g., Marketing Manager, Software Developer, Financial Analyst..." />
+                        <div class="profile-help">Your role or background helps tailor explanations to your needs.</div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="profile-label">Additional Context:</div>
+                        <textarea id="profile-default-context" placeholder="Add any default context that should be included with all your jargon explanations..."></textarea>
+                        <div class="profile-help">This will be automatically included with all your jargon queries.</div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>
@@ -94,6 +114,11 @@
             </div>
             <div class="version">v1.0.0</div>
         </footer>
+        
+        <!-- Toast notification -->
+        <div id="toast-notification" class="toast-notification">
+            <i class="fas fa-check-circle"></i> Profile saved successfully!
+        </div>
     </div>
 
     <script src="./popup.js"></script>

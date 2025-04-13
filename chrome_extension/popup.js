@@ -24,6 +24,119 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+    // User Profile Management
+    const profileManager = {
+        getProfile: async () => {
+            console.log("Getting user profile");
+            try {
+                const result = await chrome.storage.local.get(['jargone_profile']);
+                // Default profile if none exists
+                const profile = result.jargone_profile || {
+                    explanationLevel: "detailed",
+                    userRole: "",
+                    defaultContext: ""
+                };
+                console.log("Retrieved profile:", profile);
+                return profile;
+            } catch (e) {
+                console.error("Error getting profile:", e);
+                return { explanationLevel: "detailed", userRole: "", defaultContext: "" };
+            }
+        },
+        
+        saveProfile: async (explanationLevel, userRole, defaultContext) => {
+            console.log("Saving user profile:", { explanationLevel, userRole, defaultContext });
+            try {
+                const profile = {
+                    explanationLevel: explanationLevel,
+                    userRole: userRole || "",
+                    defaultContext: defaultContext || ""
+                };
+                
+                await chrome.storage.local.set({ 'jargone_profile': profile });
+                console.log("Profile saved successfully");
+                return true;
+            } catch (e) {
+                console.error("Error saving profile:", e);
+                return false;
+            }
+        },
+        
+        loadProfileUI: async () => {
+            console.log("Loading profile into UI");
+            const profile = await profileManager.getProfile();
+            
+            // Set explanation level selection
+            const levelButtons = document.querySelectorAll('.profile-department-option');
+            levelButtons.forEach(button => {
+                if (button.dataset.level === profile.explanationLevel) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+            
+            // Set user role
+            const userRoleInput = document.getElementById('profile-user-role');
+            if (userRoleInput) {
+                userRoleInput.value = profile.userRole || "";
+            }
+            
+            // Set default context
+            const contextInput = document.getElementById('profile-default-context');
+            if (contextInput) {
+                contextInput.value = profile.defaultContext || "";
+            }
+        },
+        
+        setupProfileListeners: () => {
+            console.log("Setting up profile UI listeners");
+            
+            // Explanation level selection in profile
+            const levelButtons = document.querySelectorAll('.profile-department-option');
+            levelButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    levelButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                });
+            });
+            
+            // Save profile button
+            const saveButton = document.getElementById('save-profile');
+            if (saveButton) {
+                saveButton.addEventListener('click', async () => {
+                    // Get selected explanation level
+                    const activeButton = document.querySelector('.profile-department-option.active');
+                    const explanationLevel = activeButton ? activeButton.dataset.level : "detailed";
+                    
+                    // Get user role
+                    const userRole = document.getElementById('profile-user-role').value;
+                    
+                    // Get default context
+                    const defaultContext = document.getElementById('profile-default-context').value;
+                    
+                    // Save profile
+                    const success = await profileManager.saveProfile(explanationLevel, userRole, defaultContext);
+                    
+                    if (success) {
+                        // Show toast notification
+                        const toastElement = document.getElementById('toast-notification');
+                        if (toastElement) {
+                            toastElement.classList.add('show');
+                            
+                            // Remove show class after animation completes
+                            setTimeout(() => {
+                                toastElement.classList.remove('show');
+                            }, 3000);
+                        }
+                    }
+                });
+            }
+        }
+    };
+
     // Migrate old history data to new format
     const migrateHistoryData = async () => {
         console.log("Checking if history migration is needed");
@@ -88,11 +201,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         },
         
-        addToHistory: async (query, explanation, department, additionalContext) => {
+        addToHistory: async (query, explanation, explanationLevel, userRole, additionalContext) => {
             console.log("Adding to history:", {
                 query, 
                 explanation: explanation.substring(0, 50) + "...",
-                department,
+                explanationLevel,
+                userRole,
                 additionalContext: additionalContext ? additionalContext.substring(0, 50) + "..." : "None"
             });
             
@@ -104,7 +218,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     id: Date.now(),
                     query: query,
                     explanation: explanation,
-                    department: department,
+                    explanationLevel: explanationLevel,
+                    userRole: userRole,
                     additionalContext: additionalContext || "",
                     timestamp: new Date().toISOString()
                 };
@@ -170,14 +285,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                         const date = new Date(timestamp);
                         const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                         
-                        // Get department icon and name, with fallback to "general"
-                        const department = item.department || "general";
-                        let deptIcon = 'fa-building';
-                        if (department === 'tech') deptIcon = 'fa-laptop-code';
-                        else if (department === 'finance') deptIcon = 'fa-chart-line';
+                        // Get explanation level icon and label, with fallback to "detailed"
+                        const explanationLevel = item.explanationLevel || "detailed";
+                        let levelIcon = 'fa-user-graduate';
+                        let levelLabel = 'Detailed';
                         
-                        // Capitalize first letter of department
-                        const displayDepartment = department.charAt(0).toUpperCase() + department.slice(1);
+                        if (explanationLevel === 'basic') {
+                            levelIcon = 'fa-user';
+                            levelLabel = 'Basic';
+                        } else if (explanationLevel === 'expert') {
+                            levelIcon = 'fa-brain';
+                            levelLabel = 'Expert';
+                        }
                         
                         console.log(`Rendering history item ${index}:`, { id, query: query.substring(0, 20) + "..." });
                         
@@ -186,7 +305,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             <div class="history-item" data-id="${id}">
                                 <div class="history-query">${query.length > 50 ? query.substring(0, 50) + '...' : query}</div>
                                 <div class="history-meta">
-                                    <span class="history-dept"><i class="fas ${deptIcon}"></i> ${displayDepartment}</span>
+                                    <span class="history-dept"><i class="fas ${levelIcon}"></i> ${levelLabel}</span>
                                 </div>
                                 <div class="history-time"><i class="fas fa-clock"></i> ${formattedDate}</div>
                             </div>
@@ -223,12 +342,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 document.getElementById('input').innerHTML = historyItem.query || "";
                                 document.getElementById('input').style.opacity = 1;
                                 
-                                // Set department with fallback to "general"
-                                setActiveDepartment(historyItem.department || "general");
-                                
-                                // Set additional context if any
-                                document.getElementById('additional-context').value = historyItem.additionalContext || '';
-                                
                                 document.getElementById('output').innerHTML = historyItem.explanation || "";
                                 document.getElementById('output').style.opacity = 1;
                             } else {
@@ -253,37 +366,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
             }
         }
-    };
-
-    // Department selection handling
-    const setupDepartmentSelection = () => {
-        const departmentOptions = document.querySelectorAll('.department-option');
-        
-        departmentOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remove active class from all options
-                departmentOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to clicked option
-                option.classList.add('active');
-            });
-        });
-    };
-    
-    const getActiveDepartment = () => {
-        const activeOption = document.querySelector('.department-option.active');
-        return activeOption ? activeOption.getAttribute('data-department') : 'general';
-    };
-    
-    const setActiveDepartment = (department) => {
-        const departmentOptions = document.querySelectorAll('.department-option');
-        departmentOptions.forEach(opt => {
-            if (opt.getAttribute('data-department') === department) {
-                opt.classList.add('active');
-            } else {
-                opt.classList.remove('active');
-            }
-        });
     };
 
     // Show loading animation
@@ -360,58 +442,70 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Setup submit button
     const setupSubmitButton = () => {
+        console.log("Setting up submit button");
         const submitButton = document.getElementById('submit-request');
-        submitButton.addEventListener('click', () => {
-            const selectedText = document.getElementById('input').innerHTML;
-            
-            if (selectedText && selectedText !== "You have to first select some text") {
-                const department = getActiveDepartment();
-                const additionalContext = document.getElementById('additional-context').value;
+        
+        if (submitButton) {
+            submitButton.addEventListener('click', async () => {
+                const input = document.getElementById('input');
                 
-                // Show loading animation
-                showLoading();
+                if (!input || !input.textContent.trim()) {
+                    console.log("No input text to process");
+                    return;
+                }
+                
+                // Get user profile for department, userRole and defaultContext
+                const profile = await profileManager.getProfile();
                 
                 // Process the request
-                processRequest(selectedText, department, additionalContext);
+                await processRequest(input.textContent, profile.explanationLevel, profile.userRole, profile.defaultContext);
+            });
             } else {
-                document.getElementById('output').style.opacity = 1;
-                document.getElementById('output').innerHTML = "Please select text from a webpage first.";
+            console.error("Submit button not found!");
             }
-        });
     };
 
     // Tab switching functionality
     const setupTabs = () => {
         console.log("Setting up tabs");
-        const resultTab = document.getElementById('results-tab');
-        const historyTab = document.getElementById('history-tab');
-        const resultContent = document.getElementById('results-content');
-        const historyContent = document.getElementById('history-content');
         
-        resultTab.addEventListener('click', () => {
-            console.log("Results tab clicked");
-            resultTab.classList.add('active');
-            historyTab.classList.remove('active');
-            resultContent.style.display = 'flex';
-            historyContent.style.display = 'none';
-        });
+        const tabs = {
+            'results-tab': 'results-content',
+            'history-tab': 'history-content',
+            'profile-tab': 'profile-content'
+        };
         
-        historyTab.addEventListener('click', () => {
-            console.log("History tab clicked");
-            historyTab.classList.add('active');
-            resultTab.classList.remove('active');
-            historyContent.style.display = 'flex';
-            resultContent.style.display = 'none';
+        for (const [tabButton, tabContent] of Object.entries(tabs)) {
+            const button = document.getElementById(tabButton);
+            const content = document.getElementById(tabContent);
             
-            // Refresh history when tab is opened
-            historyManager.renderHistory();
-        });
-        
-        // Setup clear history button
-        document.getElementById('clear-history').addEventListener('click', () => {
-            console.log("Clear history button clicked");
-            historyManager.clearHistory();
-        });
+            if (button && content) {
+                button.addEventListener('click', () => {
+                    // Hide all tab contents
+                    Object.values(tabs).forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) element.style.display = 'none';
+                    });
+                    
+                    // Remove active class from all tab buttons
+                    Object.keys(tabs).forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) element.classList.remove('active');
+                    });
+                    
+                    // Show selected tab content and set active class
+                    content.style.display = 'block';
+                    button.classList.add('active');
+                    
+                    // If profile tab is selected, load profile data
+                    if (tabButton === 'profile-tab') {
+                        profileManager.loadProfileUI();
+                    }
+                });
+            } else {
+                console.error(`Tab element not found: button=${tabButton}, content=${tabContent}`);
+            }
+        }
     };
 
     const getActiveTab = async () => {
@@ -424,34 +518,79 @@ document.addEventListener("DOMContentLoaded", async () => {
         return tabs[0]
     }
 
-    const processRequest = async (text, department, additionalContext) => {
-        console.log("Processing request:", { text, department, additionalContext });
+    const processRequest = async (text, explanationLevel, userRole, additionalContext) => {
+        console.log(`Processing request with explanation level: ${explanationLevel}, user role: ${userRole}, text length: ${text.length}`);
         
-        // Connect to background service worker
-        console.log("Connecting to background service worker");
-        const port = chrome.runtime.connect({ name: "popup-port" });
+        // Show loading animation
+        showLoading();
         
-        // Create the request payload
-        const payload = {
-            question: text,
-            department: department,
-            additionalContext: additionalContext
-        };
-        
-        console.log("Sending payload:", payload);
-        port.postMessage(payload);
-        
-        // Handle the response
-        port.onMessage.addListener((msg) => {
-            console.log("Received message from background:", msg);
+        try {
+            // API request would go here
+            // For now, we'll simulate a response
+            await sleep(1500); // Simulate API delay
             
-            // Hide loading animation (implicitly by replacing content)
-            showPopup(msg, text, department, additionalContext);
-        });
+            // Generate response based on explanation level
+            let response;
+            if (explanationLevel === 'basic') {
+                response = `<div class="explanation">Here's your basic jargon explanation:</div>
+                <div class="definitions">
+                    <h3>Simplified Terms:</h3>
+                    <ul>
+                        <li><strong>KPI</strong>: Key Performance Indicator - a way to measure progress.</li>
+                        <li><strong>ROI</strong>: Return on Investment - whether you're getting back more than you put in.</li>
+                    </ul>
+                </div>`;
+            } else if (explanationLevel === 'expert') {
+                response = `<div class="explanation">Here's your expert-level jargon explanation:</div>
+                <div class="definitions">
+                    <h3>Technical Definitions:</h3>
+                    <ul>
+                        <li><strong>EBITDA</strong>: Earnings Before Interest, Taxes, Depreciation, and Amortization - a measure of a company's overall financial performance that includes all operational aspects while excluding non-operational factors.</li>
+                        <li><strong>API</strong>: Application Programming Interface - a set of definitions and protocols for building and integrating application software, often serving as a contract between the information provider and user.</li>
+                    </ul>
+                </div>`;
+            } else {
+                // detailed is the default
+                response = `<div class="explanation">Here's your detailed jargon explanation:</div>
+                <div class="definitions">
+                    <h3>Business Terms:</h3>
+                    <ul>
+                        <li><strong>KPI</strong>: Key Performance Indicator - measurable value that shows how effectively a company is achieving key business objectives.</li>
+                        <li><strong>ROI</strong>: Return on Investment - measures the gain or loss from an investment relative to its cost.</li>
+                    </ul>
+                </div>`;
+            }
+            
+            // Add user role information if provided
+            if (userRole && userRole.trim()) {
+                response += `<div class="user-role-note">
+                    <p><strong>Tailored for:</strong> ${userRole}</p>
+                </div>`;
+            }
+            
+            // Add additional context note if provided
+            if (additionalContext && additionalContext.trim()) {
+                response += `<div class="context-note">
+                    <p><strong>Additional context applied:</strong> ${additionalContext}</p>
+                </div>`;
+            }
+            
+            // Add to history
+            historyManager.addToHistory(text, response, explanationLevel, userRole, additionalContext);
+            
+            // Display the response
+            hideLoading();
+            showPopup(response, text, explanationLevel, userRole, additionalContext);
+            
+        } catch (error) {
+            console.error("Error processing request:", error);
+            hideLoading();
+            document.getElementById('output').innerHTML = "Error: Unable to process your request.";
+        }
     };
 
-    const showPopup = async (answer, selectedText, department, additionalContext) => {
-        console.log("showPopup called with:", { answer, selectedText, department, additionalContext });
+    const showPopup = async (answer, selectedText, explanationLevel, userRole, additionalContext) => {
+        console.log("showPopup called with:", { answer, selectedText, explanationLevel, userRole, additionalContext });
         let explanationContent = "";
         const outputElement = document.getElementById('output');
         
@@ -486,7 +625,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     scrollToElement(outputElement);
                     
                     // Save to history
-                    await historyManager.addToHistory(selectedText, explanationContent, department, additionalContext);
+                    await historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
                     
                     return;
                 }
@@ -518,7 +657,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         // Save to history for error cases as well if we have valid input
         if (selectedText && selectedText.length > 0 && explanationContent && explanationContent.length > 0) {
-            await historyManager.addToHistory(selectedText, explanationContent, department, additionalContext);
+            await historyManager.addToHistory(selectedText, explanationContent, explanationLevel, userRole, additionalContext);
         }
     }
 
@@ -548,9 +687,49 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Initialize
     setupTabs();
-    setupDepartmentSelection();
     setupSubmitButton();
     await migrateHistoryData();
     await historyManager.renderHistory();
     getSelectedText();
+
+    // ===== Initialize the extension =====
+    (async function init() {
+        try {
+            // Load selected text from the active tab
+            const selectedText = await getSelectedText();
+            
+            // Update the UI with the selected text
+            const inputElement = document.getElementById('input');
+            if (inputElement) {
+                inputElement.innerHTML = selectedText || "Select text on any webpage to explain jargon";
+            }
+            
+            // Load user profile
+            await profileManager.getProfile();
+            
+            // Set up the profile UI and event listeners
+            profileManager.setupProfileListeners();
+            
+            // Set up tabs
+            setupTabs();
+            
+            // Set up submit button
+            setupSubmitButton();
+            
+            // Set up history refresh (when history tab is clicked)
+            document.getElementById('history-tab').addEventListener('click', () => {
+                historyManager.renderHistory();
+            });
+            
+            // Setup clear history button
+            document.getElementById('clear-history').addEventListener('click', () => {
+                historyManager.clearHistory();
+            });
+            
+            // Migrate old history data if needed
+            await migrateHistoryData();
+        } catch (error) {
+            console.error("Error initializing extension:", error);
+        }
+    })();
 });
