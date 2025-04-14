@@ -7,19 +7,14 @@ Jargone is an AI-powered browser extension that provides real-time explanations 
 <br>
 [📝 See Presentation](/docs/jargone.pdf)
 
----
 
-## 🧠 Overview
-
-Jargone functions as a lightweight browser extension connected to an intelligent backend that analyzes and explains terms using contextual AI. It’s designed to improve understanding between technical and non-technical stakeholders in any organization — from product and engineering to sales and marketing.
-
-For proof-of-concept, we use OpenAI’s API for language generation. However, **we prioritize privacy and security**: for enterprise deployment, Jargone can be configured with **on-premise LLMs** such as **LLaMA**, ensuring all company data remains secure within your infrastructure.
+For proof-of-concept, we use OpenAI’s API. However, **we prioritize privacy and security**: for enterprise deployment, Jargone can be configured with **on-premise LLMs** such as **LLaMA**, ensuring all company data remains secure within your infrastructure.
 
 ---
 
 ## ✨ Key Features
 
-- 🔍 **Instant Jargon Explanation**: Select any text on a webpage to receive a real-time, plain-language explanation.
+- 🔍 **Instant Jargon Explanation**: Select any text on a webpage to receive a real-time, context-aware explanation. The tool also integrates company-provided documents, delivering tailored responses.
 - 🧑‍💼 **Contextual Personalization**: Customize explanations based on your role and preferred depth of detail.
 - 📚 **Search History**: Review previous explanations for reference.
 - ⚙️ **Configurable Backend**: Swap between public APIs and private LLMs (like LLaMA) for full control over data privacy.
