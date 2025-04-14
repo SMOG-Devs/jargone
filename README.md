@@ -94,7 +94,7 @@ POST http://localhost:8000/explain
   "text": "Selected jargon term",
   "explanationLevel": "basic",
   "userRole": "Marketing Manager",
-  "additionalContext": "B2B SaaS product documentation"
+  "additionalContext": "I'm new to the tech industry and unfamiliar with infrastructure concepts."
 }
 ```
 
