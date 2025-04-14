@@ -42,26 +42,37 @@ For proof-of-concept, we use OpenAI’s API for language generation. However, **
 
 ---
 
-## 🧪 Installation
+## 🧪 Installation Guide
 
 ### Prerequisites
-- A local backend running on `http://localhost:8000`
-- Node.js and npm (optional, if you plan to modify frontend)
+- Ensure Docker and Docker Compose are installed
+- A Chromium-based browser (e.g., Chrome) is required
+- Node.js and npm *(optional, only necessary if you intend to modify or build the frontend)*
 
-### Setup Instructions
+#### Backend Setup
 
-1. Clone this repository:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/jargone.git
    ```
+2. **Spin up the required services (MySQL, Qdrant, and RAG API server) using Docker Compose**
+After cloning the repository, navigate to the project folder and run Docker Compose to build and start the necessary services:
+```bash
+cd jargone
+docker-compose up --build
+```
 
-2. Launch Chrome and navigate to `chrome://extensions/`
+This will start the following services:
 
-3. Enable **Developer Mode**
+- MySQL: store entities and their explanations
+- Qdrant: for semantic vector search
+- FastAPI server: for serving the explanation API using RAG architecture
 
-4. Click **Load unpacked** and select the extension folder
-
-5. The Jargone icon will now appear in your browser toolbar
+#### Frontend Setup (Browser Extension)
+1. Open Chrome and go to chrome://extensions/
+2. Turn on Developer Mode in the top-right corner
+3. Click Load unpacked and choose the cloned repository directory
+4. The Jargone extension icon should now appear in your browser toolbar
 
 ---
 
