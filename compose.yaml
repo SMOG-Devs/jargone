@@ -30,7 +30,7 @@ services:
 
   sql-server:
     image: postgres
-    container_name: mysql
+    container_name: postgres
     ports:
       - 5432:5432
     restart: always
