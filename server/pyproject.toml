@@ -7,12 +7,10 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.12",
     "pydantic>=2.11.3",
-    "pytest>=8.3.5",
     "spacy>=3.8.5",
     "spacy-download>=1.1.0",
     "sqlalchemy>=2.0.0",
     "fastapi[standard]",
-    "pytest>=8.3.5",
     "openai>=1.73.0",
     "tiktoken>=0.9.0",
     "qdrant-client>=1.13.3",
@@ -29,3 +27,9 @@ log_cli = true
 log_cli_level = "INFO"
 log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
 log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.6",
+]
